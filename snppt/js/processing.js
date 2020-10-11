@@ -1,7 +1,7 @@
 let colourPreference;
 document.addEventListener('DOMContentLoaded', () => {
     const url = window.location.href;
-    if (url !== 'https://localhost:3000/snppt/index.html?#') {
+    if (url !== 'https://ejg-miniapps-svb26.ondigitalocean.app/snppt/main.html?#') {
         const link = document.createElement('a');
         link.href = '?#';
         link.id = 'redirectHashLink';
