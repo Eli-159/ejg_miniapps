@@ -1,0 +1,29 @@
+body {
+    background-color: white;
+    color: black;
+    text-align: center;
+}
+
+main {
+    max-width: 1000px;
+    margin: auto;
+}
+
+table {
+    border-collapse: collapse;
+    border: 3px solid black;
+}
+
+th {
+    border: 2px solid black;
+    padding: 10px;
+}
+
+td {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.standard-button {
+    display: none;
+}

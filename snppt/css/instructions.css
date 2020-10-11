@@ -1,0 +1,16 @@
+.urlBox {
+    width: 80%;
+    border: 2px solid #e6e6e6;
+    border-radius: 10px;
+    font-weight: bold;
+    margin-left: 50px;
+    text-align: center;
+    font-size: 16px;
+    overflow-wrap: break-word;
+}
+
+ol {
+    text-align: left;
+    font-size: 18px;
+    width: 80%;
+}

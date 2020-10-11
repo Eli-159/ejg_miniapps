@@ -1,0 +1,104 @@
+body {
+    background-color: #000066;
+    color: #e6e6e6;
+    text-align: center;
+}
+
+header {
+    background-color: #e6e6e6;
+    color: #000066;
+    padding: 1rem;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    margin: auto;
+
+}
+
+main {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.setTextColor {
+    color: #000066;
+}
+
+#pleaseNote {
+    text-align: left;
+    left: 0;
+    bottom: 0;
+    padding: 20px;
+}
+
+#grade {
+    text-align: center;
+    border-radius: 0.5rem;
+    border: 2px solid #e6e6e6;
+    background-color: #000066;
+    color: #e6e6e6;
+    width: 200px;
+    height: 30px;
+}
+
+#inputData {
+    text-align: left;
+    border-radius: 0.5rem;
+    border: 2px solid #e6e6e6;
+    background-color: #000066;
+    color: #e6e6e6;
+    width: 60%;
+    height: 25px;
+}
+
+.standardTextInput {
+    color: #000066;
+    border-color: #000066;
+    border-radius: 2px;
+  }
+
+.standard-button {
+    text-align: center;
+    border-radius: 0.5rem;
+    border: 2px solid #e6e6e6;
+    background-color: #000066;
+    color: #e6e6e6;
+    min-width: 75px;
+    padding: 0.5rem;
+    text-decoration: none;
+}
+
+.standard-button:hover {
+    border: 2px solid #000066;
+    background-color: #e6e6e6;
+    color: #000066;
+    cursor: pointer;
+}
+
+.standard-button:disabled {
+    border: 2px solid #666666;
+    color: #666666;
+}
+
+.standard-button:disabled:hover {
+    border: 2px solid #666666;
+    background-color: #000066;
+    color: #666666;
+    cursor: not-allowed;
+}
+
+.standard-checkbox {
+    border: 1pt solid #000066;
+    background-color: #666666;
+    color: #000066;
+}
+
+.standard-checkbox:checked:before {
+    border: 1pt solid #666666;
+    background: #000066;
+    color: #666666;
+}
+
+a {
+    text-decoration: underline;
+    color: #e6e6e6;
+}

@@ -1,0 +1,64 @@
+.overlay {
+  position: fixed;
+  overflow: scroll;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+  text-align: left;
+}
+
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background-color: #e6e6e6;
+  color: #000066;
+  border-radius: 5px;
+  max-width: 600px;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+  margin-top: 0;
+}
+
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #000066;
+}
+
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+#pptPickColours {
+  padding-left: 50px;
+}
+
+.colourPreviewCell {
+  width: 15pt;
+  height: 15pt;
+  border-radius: 15pt;
+  border: 1pt solid black;
+}
+
+#pptTitle {
+  padding-left: 50px;
+}
