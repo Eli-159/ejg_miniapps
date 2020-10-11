@@ -9,7 +9,7 @@ const powerpointFunctions = {
         slide.color = colours.text;
         if (logo) {
             let imgOpts = {
-                path: "http://localhost:3000/snppt/images/CSHS_Logo.png",
+                path: "https://ejg-miniapps-svb26.ondigitalocean.app/snppt/images/CSHS_Logo.png",
                 x: '95%',
                 y: '89%',
                 w: '4%',
