@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNPPT App</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/ppt-popup.css">
+    <script src="/js/processing.js"></script>
+    <script src="/js/pptLibary.js"></script>
+    <script src="/js/powerpoint.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Student Notices PowerPoint App</h1>
+    </header>
+    <br>
+    <main>
+        <div id='dataInputSection'>
+            <h3>Please paste the data copied from the Student Notices page here:</h3>
+            <input type="text" id="inputData">
+            <br>
+            <br>
+            <h3>Please select your grade:</h3>
+            <select id="grade">
+                <option value="none">--Please Select--</option>
+                <option value="Year 7">Year 7</option>
+                <option value="Year 8">Year 8</option>
+                <option value="Year 9">Year 9</option>
+                <option value="Year 10">Year 10</option>
+                <option value="Year 11">Year 11</option>
+                <option value="Year 12">Year 12</option>
+            </select>
+        </div>
+        <br>
+        <br>
+        <input type="button" value="Submit" id="submit" class="standard-button">
+        <br>
+        <br>
+        <br>
+        <br>
+        <div id="postSubmitControls">
+            <a href="#pptPopupBtn" class="standard-button">Create PowerPoint</a>
+
+            <div id="pptPopupBtn" class="overlay">
+                <div class="popup">
+                    <h2>PowerPoint Settings</h2>
+                    <a class="close" href="#">&times;</a>
+                    <div class="pptSettings">
+                        <input type="checkbox" class="standard-checkbox" id="pptCustomColours">
+                        <label for="pptCustomColours">Custom Colours</label>
+                        <div id='pptPickColours'>
+                            <p>
+                                Please use a 6 digit hex colour, such as those found 
+                                <a href="https://www.w3schools.com/colors/colors_picker.asp" class="setTextColor" target="blank">here</a>. 
+                                Your colour choices will automatically be remembered for next time you open this page. 
+                                These colours will only be applied if the 'Custom Colours' box is ticked.
+                                If this box is not ticked, it will default to the same colour scheme as this page.
+                            </p>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <label for="pptBackColour">Background Colour:</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="standardTextInput" id="pptBackColour">
+                                    </td>
+                                    <td>
+                                        <div class="colourPreviewCell" id="backColourPrev"></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="pptTextColour">Text Colour:</label> 
+                                    </td>
+                                    <td>
+                                        <input type="text" class="standardTextInput" id="pptTextColour">
+                                    </td>
+                                    <td>
+                                        <div class="colourPreviewCell" id="textColourPrev"></div>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br>
+                        </div>
+                        <br>
+                        <input type="checkbox" class="standard-checkbox" id="includeLogo">
+                        <label for="includeLogo">Include Logo</label>
+                        <br>
+                        <input type="checkbox" class="standard-checkbox" id="includeTitlePage">
+                        <label for="includeTitlePage">Include Title Page</label>
+                        <div id="pptTitle">
+                            <p>Please choose the title from the options below or set a custom one:</p>
+                            <input type="radio" name="titlePageValue" id="yearStudentNotices">
+                            <label for="yearStudentNotices">Year <span class="yearLevelSpan"></span> Student Notices</label>
+                            <br>
+                            <input type="radio" name="titlePageValue" id="yearNotices">
+                            <label for="yearNotices">Year <span class="yearLevelSpan"></span> Notices</label>
+                            <br>
+                            <input type="radio" name="titlePageValue" id="yearAssembly">
+                            <label for="yearAssembly">Year <span class="yearLevelSpan"></span> Assembly</label>
+                            <br>
+                            <input type="radio" name="titlePageValue" id="studentNotices">
+                            <label for="studentNotices">Student Notices</label>
+                            <br>
+                            <input type="radio" name="titlePageValue" id="customPptTitle">
+                            <label for="customPptTitle">
+                                <input type="text" id="customPptTitleInput" class="standardTextInput">
+                            </label>
+                            <br>
+                            <input type="radio" name="titlePageValue" id="blankSlide">
+                            <label for="blankSlide">--Blank--</label>
+                            <br>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <form action="#">
+                            <input type="submit" class="standard-button" id="createPowerPoint" value="Create PowerPoint" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <input type="button" value="View Data" class="standard-button" id="viewDataNewPage">
+        </div>
+        <br>
+        <br>
+        <div id='pleaseNote'>
+            <p>
+                Please note:
+                <br>
+                The data will be filtered based on the relivence of the category for your chosen grade. This means that some of the following categories will not be included:
+            </p>
+            <ul>
+                <li>Year 7</li>
+                <li>Year 9</li>
+                <li>Year 8</li>
+                <li>Year 10</li>
+                <li>Year 11</li>
+                <li>Year 12</li>
+                <li>Junior Schooling</li>
+                <li>Senior Schooling</li>
+            </ul>
+            <br>
+            <p>The Student Notices are copied automatically with a script. If you do not have this, go to the 
+                <a href="/instructions.html">Instructions Page</a>.
+            </p>
+        </div>
+    </main>
+</body>
+</html>
