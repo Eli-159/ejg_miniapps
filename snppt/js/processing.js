@@ -107,15 +107,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 disabled = true;
                 pptTextColour.style['border-color'] = '#ff0000';
             }
-            console.log(selectedPptTitle());
-            console.log(includeTitlePage.checked);
             if (selectedPptTitle() == null && includeTitlePage.checked) {
                 disabled == true;
             }
         }
     }
     const updateColourData = () => {
-        console.log('Updating Colour Data...');
         colourPreference = {
             backColour: pptBackColour.value,
             textColour: pptTextColour.value
@@ -128,7 +125,6 @@ document.addEventListener('DOMContentLoaded', () => {
             window.localStorage.setItem('colourPreference', JSON.stringify(colourPreference));
         }
         verifyPptSettings();
-        console.log('Updated!');
     }
     setColourData();
     updateColourData();
@@ -202,7 +198,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 processedData.push(currentData);
             }
         }
-        console.log(processedData);
         postSubmitControls.style.display = 'block';
     });
 

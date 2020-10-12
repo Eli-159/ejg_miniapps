@@ -4,7 +4,6 @@ const powerpointFunctions = {
     },
     createSlide: (pres, logo, colours) => {
         let slide = pres.addSlide();
-        console.log(colours);
         slide.background = {fill: colours.back};
         slide.color = colours.text;
         if (logo) {
