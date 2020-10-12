@@ -131,8 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
     setColourData();
     updateColourData();
 
-    pptBackColour.addEventListener('change', updateColourData);
-    pptTextColour.addEventListener('change', updateColourData);
+    pptBackColour.addEventListener('input', updateColourData);
+    pptTextColour.addEventListener('input', updateColourData);
 
     pptCustomColours.addEventListener('change', () => {
         if (pptCustomColours.checked == true) {
