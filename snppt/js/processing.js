@@ -115,24 +115,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     const updateColourData = () => {
+        console.log('Updating Colour Data...');
         colourPreference = {
             backColour: pptBackColour.value,
             textColour: pptTextColour.value
         }
-        backColourPrev.style['background-color'] = pptBackColour.value;
-        textColourPrev.style['background-color'] = pptTextColour.value;
+        backColourPrev.style['background-color'] = colourPreference.backColour;
+        textColourPrev.style['background-color'] = colourPreference.textColour;
         backColourPrev.style['background-color'] = colourPreference.backColour;
         textColourPrev.style['background-color'] = colourPreference.textColour;
         if (/^#[0-9A-F]{6}$/i.test(colourPreference.backColour) && /^#[0-9A-F]{6}$/i.test(colourPreference.textColour)) {
             window.localStorage.setItem('colourPreference', JSON.stringify(colourPreference));
         }
         verifyPptSettings();
+        console.log('Updated!');
     }
     setColourData();
     updateColourData();
 
-    pptBackColour.addEventListener('oninput', updateColourData);
-    pptTextColour.addEventListener('oninput', updateColourData);
+    pptBackColour.addEventListener('change', updateColourData);
+    pptTextColour.addEventListener('change', updateColourData);
 
     pptCustomColours.addEventListener('change', () => {
         if (pptCustomColours.checked == true) {
