@@ -1,10 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const pageCss = document.getElementById('pageCss');
+    const mainPageCss = document.getElementById('mainPageCss');
+    const printPageCss = document.getElementById('printPageCss');
     const savedData = window.sessionStorage.getItem('noticesDataDisplay');
     const table = document.getElementById('noticesTable');
     const tableContainer = document.getElementById('tableContainer');
     const errorMessage = document.getElementById('error');
     const printBtn = document.getElementById('printBtn');
+
+    printPageCss.disabled = true;
+    
     if (savedData == null) {
         tableContainer.style.display = 'none';
     } else {
@@ -33,12 +37,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     printBtn.addEventListener('click', () => {
-        pageCss.href = '/snppt/css/data-view-print.css';
+        mainPageCss.disabled = true;
+        printPageCss.disabled = false;
         setTimeout(() => {
             window.print();
             setTimeout(() => {
-                pageCss.href = '/snppt/css/data-view-main.css';
-            }, 500);
-        }, 1500);
+                printPageCss.disabled = true;
+                mainPageCss.disabled = false;
+            }, 1000);
+        }, 1000);
     });
 });
