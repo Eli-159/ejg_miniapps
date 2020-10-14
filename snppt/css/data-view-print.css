@@ -14,14 +14,20 @@ table {
     border: 3px solid black;
 }
 
+tr {
+    page-break-inside: avoid;
+}
+
 th {
     border: 2px solid black;
     padding: 10px;
+    page-break-inside: avoid;
 }
 
 td {
     border: 1px solid black;
     padding: 10px;
+    page-break-inside: avoid;
 }
 
 .standard-button {
