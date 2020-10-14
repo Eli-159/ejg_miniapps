@@ -1,13 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // const mainPageCss = document.getElementById('mainPageCss');
-    // const printPageCss = document.getElementById('printPageCss');
     const savedData = window.sessionStorage.getItem('noticesDataDisplay');
     const table = document.getElementById('noticesTable');
     const tableContainer = document.getElementById('tableContainer');
     const errorMessage = document.getElementById('error');
     const printBtn = document.getElementById('printBtn');
 
-    //printPageCss.disabled = true;
     
     if (savedData == null) {
         tableContainer.style.display = 'none';
@@ -36,17 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // printBtn.addEventListener('click', () => {
-    //     mainPageCss.disabled = true;
-    //     printPageCss.disabled = false;
-    //     setTimeout(() => {
-    //         window.print();
-    //         setTimeout(() => {
-    //             printPageCss.disabled = true;
-    //             mainPageCss.disabled = false;
-    //         }, 1000);
-    //     }, 1000);
-    // });
     printBtn.addEventListener('click', () => {
             window.print();
     });
