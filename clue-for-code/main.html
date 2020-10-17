@@ -59,7 +59,7 @@
             });
 
             document.addEventListener('keydown', keyData => {
-                if (keyData.altKey == true && keyData.shiftKey == true && keyData.ctrlKey == false && keyData.keyCode == 53) {
+                if (keyData.altKey == true && keyData.shiftKey == false && keyData.ctrlKey == true && keyData.keyCode == 53) {
                     if (codeInput.value == 896553 || codeInput.value == '896553') {
                         adminLoggedIn = true;
                         codeInput.value = '';
