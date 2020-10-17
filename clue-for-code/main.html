@@ -37,7 +37,6 @@
                     codeInput.style.display = 'block';
                     window.speechSynthesis.speak(new SpeechSynthesisUtterance('Admin Logged Out.'));
                 } else {
-                    console.log('Submit');
                     let clueData;
                     if (localCodeSourcePref) {
                         clueData = window.localStorage.getItem('clueData');
@@ -51,7 +50,6 @@
                     }
                     if (clueData[codeInput.value] != undefined) {
                         const codeData = clueData[codeInput.value];
-                        console.log(codeData);
                         window.speechSynthesis.speak(new SpeechSynthesisUtterance(codeData));
                     } else {
                         window.speechSynthesis.speak(new SpeechSynthesisUtterance('That code does not exist.'));
