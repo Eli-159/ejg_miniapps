@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Code</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const submitBtn = document.getElementById('submitBtn');
+            const codeInput = document.getElementById('codeInput');
+            const adminControls = document.getElementById('adminControls');
+            const jsonDataInput = document.getElementById('jsonDataInput');
+            const localCodeSource = document.getElementById('localCodeSource');
+            const remoteCodeSource = document.getElementById('remoteCodeSource');
+            let localCodeSourcePref = window.localStorage.getItem('localCodeSourcePref');
+            let adminLoggedIn = false;
+            let onlineJsonData = {};
+
+            adminControls.style.display = 'none';
+            if (localCodeSourcePref == undefined) {
+                localCodeSourcePref == false;
+            }
+            localCodeSource.checked = localCodeSourcePref;
+            remoteCodeSource.checked = !localCodeSourcePref;
+
+            submitBtn.addEventListener('click', () => {
+                if (adminLoggedIn) {
+                    adminLoggedIn = false;
+                    window.localStorage.setItem('clueData', jsonDataInput.value);
+                    localCodeSourcePref = localCodeSource.checked;
+                    window.localStorage.setItem('localCodeSourcePref', localCodeSourcePref);
+                    adminControls.style.display = 'none';
+                    codeInput.style.display = 'block';
+                    window.speechSynthesis.speak(new SpeechSynthesisUtterance('Admin Logged Out.'));
+                } else {
+                    console.log('Submit');
+                    let clueData;
+                    if (localCodeSourcePref) {
+                        clueData = window.localStorage.getItem('clueData');
+                    } else {
+                        clueData = onlineJsonData;
+                    }
+                    if (clueData == undefined) {
+                        clueData = {};
+                    } else {
+                        clueData = JSON.parse(clueData);
+                    }
+                    if (clueData[codeInput.value] != undefined) {
+                        const codeData = clueData[codeInput.value];
+                        console.log(codeData);
+                        window.speechSynthesis.speak(new SpeechSynthesisUtterance(codeData));
+                    } else {
+                        window.speechSynthesis.speak(new SpeechSynthesisUtterance('That code does not exist.'));
+                    }
+                    codeInput.value = '';
+                }
+            });
+
+            document.addEventListener('keydown', keyData => {
+                if (keyData.altKey == true && keyData.shiftKey == true && keyData.ctrlKey == false && keyData.keyCode == 53) {
+                    if (codeInput.value == 896553 || codeInput.value == '896553') {
+                        adminLoggedIn = true;
+                        codeInput.value = '';
+                        codeInput.style.display = 'none';
+                        jsonDataInput.value = window.localStorage.getItem('clueData');
+                        adminControls.style.display = 'block';
+                        window.speechSynthesis.speak(new SpeechSynthesisUtterance('Welcome, Admin!'));
+                    } else {
+                        window.speechSynthesis.speak(new SpeechSynthesisUtterance('Admin Login Failed.'));
+                    }
+                }
+            });
+        });
+    </script>
+    <style>
+        body {
+            text-align: center;
+            margin: auto;
+            background-color: darkcyan;
+            color: whitesmoke;
+        }
+        input[type=text] {
+            border-radius: 7px;
+            border: 2px solid whitesmoke;
+            background-color: darkcyan;
+            color: whitesmoke;
+            height: 30px;
+            width: 300px;
+            margin: auto;
+        }
+        textarea {
+            border-radius: 7px;
+            border: 2px solid whitesmoke;
+            background-color: darkcyan;
+            color: whitesmoke;
+            margin: auto;
+        }
+        input[type=button] {
+            border-radius: 7px;
+            border: 2px solid whitesmoke;
+            background-color: darkcyan;
+            color: whitesmoke;
+            font-size: 16px;
+            height: 40px;
+            width: 80px;
+        }
+        input[type=button]:hover {
+            border-radius: 5px;
+            border: 2px solid darkcyan;
+            background-color: whitesmoke;
+            color: darkcyan;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <br>
+    <br>
+    <h2>Enter the code below:</h2>
+    <br>
+    <input type="text" id="codeInput">
+    <div id="adminControls">
+        <textarea id="jsonDataInput" cols="150" rows="10"></textarea>
+        <br>
+        <br>
+        <input type="radio" name="codeSource" id="localCodeSource">
+        <label for="localCodeSource">Local Code Source</label>
+        <br>
+        <input type="radio" name="codeSource" id="remoteCodeSource">
+        <label for="remoteCodeSource">Remote Code Source</label>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <input type="button" value="Submit" id="submitBtn">
+</body>
+</html>
