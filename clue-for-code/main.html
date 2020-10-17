@@ -16,6 +16,10 @@
             let adminLoggedIn = false;
             let onlineJsonData = {};
 
+            fetch('https://ejg-miniapps-svb26.ondigitalocean.app//clue-for-code/clue-data.json')
+            .then(res => res.text())
+            .then(json => {onlineJsonData = json;});
+
             adminControls.style.display = 'none';
             if (localCodeSourcePref == undefined) {
                 localCodeSourcePref == false;
