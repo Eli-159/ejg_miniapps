@@ -41,11 +41,13 @@
                     if (localCodeSourcePref) {
                         clueData = window.localStorage.getItem('clueData');
                     } else {
+                        console.log('onlineJsonData: ' + onlineJsonData);
                         clueData = onlineJsonData;
                     }
                     if (clueData == undefined) {
                         clueData = {};
                     } else {
+                        console.log('clueData: ' + clueData);
                         clueData = JSON.parse(clueData);
                     }
                     if (clueData[codeInput.value] != undefined) {
