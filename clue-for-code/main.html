@@ -29,9 +29,9 @@
             remoteCodeSource.checked = !localCodeSourcePref;
             const setSource = () => {
                 if (localCodeSourcePref) {
-                    sourceSpan.value = 'Local Storage';
+                    sourceSpan.textContent = 'Local Storage';
                 } else {
-                    sourceSpan.value = 'Online Default';
+                    sourceSpan.textContent = 'Online Default';
                 }
             };
             setSource();
@@ -125,6 +125,8 @@
         }
         footer {
             position: sticky;
+            height: 50px;
+            margin-top: -50px;
         }
     </style>
 </head>
