@@ -12,6 +12,7 @@
             const jsonDataInput = document.getElementById('jsonDataInput');
             const localCodeSource = document.getElementById('localCodeSource');
             const remoteCodeSource = document.getElementById('remoteCodeSource');
+            const sourceSpan = document.getElementById('sourceSpan');
             let localCodeSourcePref = window.localStorage.getItem('localCodeSourcePref');
             let adminLoggedIn = false;
             let onlineJsonData = {};
@@ -26,6 +27,14 @@
             }
             localCodeSource.checked = localCodeSourcePref;
             remoteCodeSource.checked = !localCodeSourcePref;
+            const setSource = () => {
+                if (localCodeSourcePref) {
+                    sourceSpan.value = 'Local Storage';
+                } else {
+                    sourceSpan.value = 'Online Default';
+                }
+            };
+            setSource();
 
             submitBtn.addEventListener('click', () => {
                 if (adminLoggedIn) {
@@ -41,13 +50,11 @@
                     if (localCodeSourcePref) {
                         clueData = window.localStorage.getItem('clueData');
                     } else {
-                        console.log('onlineJsonData: ' + onlineJsonData);
                         clueData = onlineJsonData;
                     }
                     if (clueData == undefined) {
                         clueData = {};
                     } else {
-                        console.log('clueData: ' + clueData);
                         clueData = JSON.parse(clueData);
                     }
                     if (clueData[codeInput.value] != undefined) {
@@ -58,6 +65,7 @@
                     }
                     codeInput.value = '';
                 }
+                setSource();
             });
 
             document.addEventListener('keydown', keyData => {
@@ -139,5 +147,9 @@
     <br>
     <br>
     <input type="button" value="Submit" id="submitBtn">
+    <br>
+    <br>
+    <br>
+    <footer>Source: <span id="sourceSpan"></span></footer>
 </body>
 </html>
