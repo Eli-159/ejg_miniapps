@@ -17,6 +17,21 @@
             let adminLoggedIn = false;
             let onlineJsonData = {};
 
+            const setSource = () => {
+                if (localCodeSourcePref) {
+                    sourceSpan.textContent = 'Local Storage';
+                } else {
+                    sourceSpan.textContent = 'Online Default';
+                }
+            };
+            const stringToBool = (string) => {
+                switch(string.toLowerCase().trim()){
+                    case "true": case "yes": case "1": return true;
+                    case "false": case "no": case "0": case null: return false;
+                    default: return Boolean(string);
+                }
+            }
+
             fetch('https://ejg-miniapps-svb26.ondigitalocean.app/clue-for-code/clue-data.json')
             .then(res => res.text())
             .then(json => {onlineJsonData = json;});
@@ -25,15 +40,10 @@
             if (localCodeSourcePref == undefined) {
                 localCodeSourcePref == false;
             }
+            localCodeSourcePref = stringToBool(localCodeSourcePref);
             localCodeSource.checked = localCodeSourcePref;
             remoteCodeSource.checked = !localCodeSourcePref;
-            const setSource = () => {
-                if (localCodeSourcePref) {
-                    sourceSpan.textContent = 'Local Storage';
-                } else {
-                    sourceSpan.textContent = 'Online Default';
-                }
-            };
+
             setSource();
 
             submitBtn.addEventListener('click', () => {
