@@ -58,19 +58,19 @@
                     codeInput.style.display = 'block';
                     window.speechSynthesis.speak(new SpeechSynthesisUtterance('Admin Logged Out.'));
                 } else {
-                    let clueData;
-                    if (localCodeSourcePref) {
-                        console.log(window.localStorage.getItem('clueData'));
-                        clueData = window.localStorage.getItem('clueData');
-                    } else {
-                        clueData = onlineJsonData;
-                    }
-                    if (clueData == undefined) {
-                        clueData = {};
-                    } else {
-                        console.log(clueData);
-                        clueData = JSON.parse(clueData);
-                    }
+                    let clueData = onlineJsonData;
+                    // if (localCodeSourcePref) {
+                    //     console.log(window.localStorage.getItem('clueData'));
+                    //     clueData = window.localStorage.getItem('clueData');
+                    // } else {
+                    //     clueData = onlineJsonData;
+                    // }
+                    // if (clueData == undefined) {
+                    //     clueData = {};
+                    // } else {
+                    //     console.log(clueData);
+                    //     clueData = JSON.parse(clueData);
+                    // }
                     if (clueData[codeInput.value] != undefined) {
                         const codeData = clueData[codeInput.value];
                         for (let i = 0; i < mainElements.length; i++) {
