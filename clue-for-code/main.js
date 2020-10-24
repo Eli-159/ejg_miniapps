@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(json => {onlineJsonData = json;});
 
     adminControls.style.display = 'none';
-    if (localCodeSourcePref == undefined) {
+    if (localCodeSourcePref == undefined || localCodeSourcePref == null) {
         localCodeSourcePref == false;
     }
     localCodeSourcePref = stringToBool(localCodeSourcePref);
