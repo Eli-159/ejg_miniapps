@@ -34,8 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
     adminControls.style.display = 'none';
     if (localCodeSourcePref == undefined || localCodeSourcePref == null) {
         localCodeSourcePref == false;
+    } else {
+        localCodeSourcePref = stringToBool(localCodeSourcePref);
     }
-    localCodeSourcePref = stringToBool(localCodeSourcePref);
     localCodeSource.checked = localCodeSourcePref;
     remoteCodeSource.checked = !localCodeSourcePref;
 
