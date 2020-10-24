@@ -1,0 +1,52 @@
+body {
+    text-align: center;
+    margin: auto;
+    background-color: darkcyan;
+    color: whitesmoke;
+}
+input[type=text] {
+    border-radius: 7px;
+    border: 2px solid whitesmoke;
+    background-color: darkcyan;
+    color: whitesmoke;
+    height: 30px;
+    width: 300px;
+    margin: auto;
+}
+textarea {
+    border-radius: 7px;
+    border: 2px solid whitesmoke;
+    background-color: darkcyan;
+    color: whitesmoke;
+    margin: auto;
+}
+input[type=button] {
+    border-radius: 7px;
+    border: 2px solid whitesmoke;
+    background-color: darkcyan;
+    color: whitesmoke;
+    font-size: 16px;
+    height: 40px;
+    width: 80px;
+}
+input[type=button]:hover {
+    border-radius: 5px;
+    border: 2px solid darkcyan;
+    cursor: pointer;
+    background-color: whitesmoke;
+    color: darkcyan;
+}
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 5px;
+    padding-left: 15px;
+    text-align: left;
+    background-color: whitesmoke;
+    color: darkcyan;
+}
+#writtenClue {
+    max-width: 600px;
+}
