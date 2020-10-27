@@ -7,6 +7,7 @@ for (let i = 2; i < rows.length; i++) {
     allCellData.push({
         category: cells[1].innerText,
         subject: cells[2].getElementsByTagName('a')[0].innerText,
+        new: cells[2].getElementsByTagName('img').length > 0,
         message: cells[3].getElementsByTagName('div')[0].innerText,
         teacher: cells[5].getElementsByTagName('span')[0].getElementsByTagName('a')[2].innerText
     });
