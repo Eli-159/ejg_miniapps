@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let tableCell = document.createElement('td');
             let text = document.createTextNode(displayData[i].category);
             tableCell.appendChild(text);
+            tableCell.class = ((displayData[i].new) ? 'newNotice' : 'oldNotice');
             tableRow.appendChild(tableCell);
             tableCell = document.createElement('td');
             text = document.createTextNode(displayData[i].subject);
