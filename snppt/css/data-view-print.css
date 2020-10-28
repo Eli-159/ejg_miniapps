@@ -34,10 +34,6 @@ td {
     page-break-inside: avoid;
 }
 
-.standard-button {
-    display: none;
-}
-
-.printNote {
+#printSection {
     display: none;
 }
