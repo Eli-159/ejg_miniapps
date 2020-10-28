@@ -18,7 +18,7 @@ tr {
     page-break-inside: avoid;
 }
 
-tr.new td {
+.new {
     background-color: lightgray;
 }
 
