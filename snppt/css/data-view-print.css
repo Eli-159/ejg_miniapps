@@ -19,7 +19,7 @@ tr {
 }
 
 .newNotice {
-    background-color: lightgray;
+    background-color: #e6e6e6;
 }
 
 th {
@@ -35,5 +35,9 @@ td {
 }
 
 .standard-button {
+    display: none;
+}
+
+.printNote {
     display: none;
 }
