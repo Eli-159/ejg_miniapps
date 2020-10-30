@@ -1,5 +1,5 @@
 let colourPreference;
-const copyNoticesDataFunc = () => {
+//const copyNoticesDataFunc = () => {
     const url = window.location.href;
     if (url !== 'https://ejg-miniapps-svb26.ondigitalocean.app/snppt/main.html?#') {
         const link = document.createElement('a');
@@ -232,4 +232,4 @@ const copyNoticesDataFunc = () => {
         window.sessionStorage.setItem('noticesDataDisplay', JSON.stringify(processedData));
         window.open('/snppt/view-data.html', '_blank');
     });
-};
+//};
