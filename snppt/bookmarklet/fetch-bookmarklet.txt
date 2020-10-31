@@ -1,1 +1,1 @@
-const scriptPromise=new Promise((o,e)=>{const t=document.createElement("script");document.body.appendChild(t),t.onload=o,t.onerror=e,t.async=!0,t.src="https://ejg-miniapps-svb26.ondigitalocean.app/snppt/bookmarklet/SN_Bookmarklet.js"});scriptPromise.then(()=>{copyNoticesDataFunc()});
+javascript:const scriptPromise=new Promise((o,e)=>{const t=document.createElement("script");document.body.appendChild(t),t.onload=o,t.onerror=e,t.async=!0,t.src="https://ejg-miniapps-svb26.ondigitalocean.app/snppt/bookmarklet/SN_Bookmarklet.js"});scriptPromise.then(()=>{copyNoticesDataFunc()});
