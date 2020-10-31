@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < processedData.length; i++) {
             let slide = powerpointFunctions.createSlide(pres, includeLogo.checked, colours);
             powerpointFunctions.createTextBox(slide, processedData[i]['subject'], {
-                x: '50%',
+                x: '5%',
                 y: 0.2,
                 align: 'center',
                 bold: true,
