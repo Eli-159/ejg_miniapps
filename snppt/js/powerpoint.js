@@ -18,14 +18,15 @@ const powerpointFunctions = {
         }
         return slide;
     },
-    createTextBox: (slide, text, opts, size, x, y, align, bold) => {
+    createTextBox: (slide, text, opts, size, x, y, align, bold, fit) => {
         if (opts == false) {
             opts = {
                 fontSize: size,
                 x: x,
                 y: y,
                 align: align,
-                bold: bold
+                bold: bold,
+                autoFit: fit
             };
         }
         slide.addText(text, opts);

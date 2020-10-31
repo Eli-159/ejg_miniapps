@@ -221,9 +221,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         for (let i = 0; i < processedData.length; i++) {
             let slide = powerpointFunctions.createSlide(pres, includeLogo.checked, colours);
-            powerpointFunctions.createTextBox(slide, processedData[i]['subject'], false, 40, 1, 0.5, 'center', true);
-            powerpointFunctions.createTextBox(slide, processedData[i]['category'] + '  -  ' + processedData[i]['teacher'], false, 18, 1, 1.2, 'center', false);
-            powerpointFunctions.createTextBox(slide, processedData[i]['message'], false, 14, 1, 2.5, 'center', false);
+            powerpointFunctions.createTextBox(slide, processedData[i]['subject'], false, 40, 1, 0.5, 'center', true, true);
+            powerpointFunctions.createTextBox(slide, processedData[i]['category'] + '  -  ' + processedData[i]['teacher'], false, 18, 1, 1.2, 'center', false, false);
+            powerpointFunctions.createTextBox(slide, processedData[i]['message'], false, 14, 1, 2.5, 'center', false, false);
         }
         pres.writeFile(title + '.pptx');
     });
