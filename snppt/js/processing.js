@@ -227,6 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 y: 0.5,
                 align: 'center',
                 bold: true,
+                h: '10%',
                 autoFit: true
             });
             powerpointFunctions.createTextBox(slide, processedData[i]['category'] + '  -  ' + processedData[i]['teacher'], false, 18, 1, 1.2, 'center', false);
