@@ -25,7 +25,8 @@ const powerpointFunctions = {
                 x: x,
                 y: y,
                 align: align,
-                bold: bold
+                bold: bold,
+                valign: 'middle'
             };
         }
         slide.addText(text, opts);
