@@ -228,7 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 bold: true,
                 h: 0.8,
                 w: '90%',
-                fontSize: ((processedData[i]['subject'].length <= 30) ? 40 : ((processedData[i]['subject'].length <= 50) ? 30 : 20)),
+                fontSize: ((processedData[i]['subject'].length <= 30) ? 40 : ((processedData[i]['subject'].length <= 40) ? 35 : (processedData[i]['subject'].length <= 50) ? 25 : 18)),
                 isTextBox: true
             });
             powerpointFunctions.createTextBox(slide, processedData[i]['category'] + '  -  ' + processedData[i]['teacher'], false, 18, 1, 1.2, 'center', false);
