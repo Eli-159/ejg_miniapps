@@ -223,15 +223,16 @@ document.addEventListener('DOMContentLoaded', () => {
             let slide = powerpointFunctions.createSlide(pres, includeLogo.checked, colours);
             powerpointFunctions.createTextBox(slide, processedData[i]['subject'], {
                 x: '5%',
-                y: 0.2,
+                y: 0.4,
                 align: 'center',
                 bold: true,
-                h: 0.8,
+                h: 1.2,
                 w: '90%',
-                fontSize: ((processedData[i]['subject'].length <= 30) ? 40 : ((processedData[i]['subject'].length <= 40) ? 35 : (processedData[i]['subject'].length <= 50) ? 25 : 18)),
-                isTextBox: true
+                fontSize: ((processedData[i]['subject'].length <= 40) ? 40 : ((processedData[i]['subject'].length <= 50) ? 35 : (processedData[i]['subject'].length <= 75) ? 25 : 18)),
+                isTextBox: true,
+                valign: 'middle'
             });
-            powerpointFunctions.createTextBox(slide, processedData[i]['category'] + '  -  ' + processedData[i]['teacher'], false, 18, 1, 1.2, 'center', false);
+            powerpointFunctions.createTextBox(slide, processedData[i]['category'] + '  -  ' + processedData[i]['teacher'], false, 18, 1, 1.5, 'center', false);
             powerpointFunctions.createTextBox(slide, processedData[i]['message'], false, 14, 1, 2.5, 'center', false);
         }
         pres.writeFile(title + '.pptx');
