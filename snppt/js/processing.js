@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const submitBtn = document.getElementById('submit');
     const postSubmitControls = document.getElementById('postSubmitControls');
     const dataInputSection = document.getElementById('dataInputSection');
+    const invalidDataError = document.getElementById('invalidDataError');
     const gradeSelector = document.getElementById('grade');
     const viewDataNewPage = document.getElementById('viewDataNewPage');
     
@@ -59,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    invalidDataError.style.display = 'none';
     postSubmitControls.style.display = 'none';
     submitBtn.disabled = true;
     pptPickColours.style.display = 'none';
@@ -160,7 +162,12 @@ document.addEventListener('DOMContentLoaded', () => {
             rawData = JSON.parse(inputData.value);
         } catch {
             ok = false;
-            alert('The data you inputed isn\'t valid. Please try again.');
+            invalidDataError.style.display = 'block';
+            const hideErrorText = () => {
+                invalidDataError.style.display = 'none';
+                invalidDataError.removeEventListener('change', hideErrorText);
+            }
+            invalidDataError.addEventListener('change', hideErrorText);
         }
         if (ok) {
             inputData.disabled = true;
