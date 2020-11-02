@@ -1,3 +1,5 @@
+const { json } = require("body-parser");
+
 let colourPreference;
 document.addEventListener('DOMContentLoaded', () => {
     const url = window.location.href;
@@ -154,51 +156,60 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     submitBtn.addEventListener('click', () => {
-        const rawData = JSON.parse(inputData.value);
-        inputData.disabled = true;
-        gradeSelector.disabled = true;
-        submitBtn.disabled = true;
-        dataInputSection.removeEventListener('change', validateInputs);
-        const yearLevelSpans = document.getElementsByClassName('yearLevelSpan');
-        for (let i = 0; i < yearLevelSpans.length; i++) {
-            yearLevelSpans[i].textContent = gradeSelector.value.split(' ')[1];
+        let rawData;
+        let ok = true;
+        try {
+            rawData = JSON.parse(inputData.value);
+        } catch {
+            ok = false;
+            alert('The data you inputed isn\'t valid. Please try again.');
         }
-        const irrelevantCategories = [
-            'Year 7',
-            'Year 8',
-            'Year 9',
-            'Year 10',
-            'Year 11',
-            'Year 12',
-            'Junior Schooling',
-            'Senior Schooling'
-        ];
+        if (ok) {
+            inputData.disabled = true;
+            gradeSelector.disabled = true;
+            submitBtn.disabled = true;
+            dataInputSection.removeEventListener('change', validateInputs);
+            const yearLevelSpans = document.getElementsByClassName('yearLevelSpan');
+            for (let i = 0; i < yearLevelSpans.length; i++) {
+                yearLevelSpans[i].textContent = gradeSelector.value.split(' ')[1];
+            }
+            const irrelevantCategories = [
+                'Year 7',
+                'Year 8',
+                'Year 9',
+                'Year 10',
+                'Year 11',
+                'Year 12',
+                'Junior Schooling',
+                'Senior Schooling'
+            ];
 
-        if (gradeSelector.value == 'Year 7' || gradeSelector.value == 'Year 8' || gradeSelector.value == 'Year 9') {
-            irrelevantCategories.splice(irrelevantCategories.indexOf('Junior Schooling'), 1);
-        } else if (gradeSelector.value == 'Year 10' || gradeSelector.value == 'Year 11' || gradeSelector.value == 'Year 12') {
-            irrelevantCategories.splice(irrelevantCategories.indexOf('Senior Schooling'), 1);
-        }
-        irrelevantCategories.splice(irrelevantCategories.indexOf(gradeSelector.value), 1);
+            if (gradeSelector.value == 'Year 7' || gradeSelector.value == 'Year 8' || gradeSelector.value == 'Year 9') {
+                irrelevantCategories.splice(irrelevantCategories.indexOf('Junior Schooling'), 1);
+            } else if (gradeSelector.value == 'Year 10' || gradeSelector.value == 'Year 11' || gradeSelector.value == 'Year 12') {
+                irrelevantCategories.splice(irrelevantCategories.indexOf('Senior Schooling'), 1);
+            }
+            irrelevantCategories.splice(irrelevantCategories.indexOf(gradeSelector.value), 1);
 
 
 
-        for (let i = 0; i < rawData.length; i++) {
-            let currentData = rawData[i];
-            currentData['teacher'] = currentData['teacher'].split(' (')[0];
-            currentData['category'] = currentData['category'].split('. ')[1];
-            let relevant = true;
-            for (let i = 0; i < irrelevantCategories.length; i++) {
-                if (currentData['category'] == irrelevantCategories[i]) {
-                    relevant = false;
-                    break;
+            for (let i = 0; i < rawData.length; i++) {
+                let currentData = rawData[i];
+                currentData['teacher'] = currentData['teacher'].split(' (')[0];
+                currentData['category'] = currentData['category'].split('. ')[1];
+                let relevant = true;
+                for (let i = 0; i < irrelevantCategories.length; i++) {
+                    if (currentData['category'] == irrelevantCategories[i]) {
+                        relevant = false;
+                        break;
+                    }
+                }
+                if (relevant) {
+                    processedData.push(currentData);
                 }
             }
-            if (relevant) {
-                processedData.push(currentData);
-            }
+            postSubmitControls.style.display = 'block';
         }
-        postSubmitControls.style.display = 'block';
     });
 
     createPowerPointBtn.addEventListener('click', () => {
