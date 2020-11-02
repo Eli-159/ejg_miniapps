@@ -228,7 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 bold: true,
                 h: 1.3,
                 w: '96%',
-                fontSize: ((processedData[i]['subject'].length <= 40) ? 40 : ((processedData[i]['subject'].length <= 60) ? 35 : (processedData[i]['subject'].length <= 100) ? 25 : 18)),
+                fontSize: ((processedData[i]['subject'].length <= 50) ? 40 : ((processedData[i]['subject'].length <= 75) ? 35 : (processedData[i]['subject'].length <= 100) ? 25 : 18)),
                 isTextBox: true,
                 valign: 'middle'
             });
