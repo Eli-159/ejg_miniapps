@@ -223,12 +223,12 @@ document.addEventListener('DOMContentLoaded', () => {
             let slide = powerpointFunctions.createSlide(pres, includeLogo.checked, colours);
             powerpointFunctions.createTextBox(slide, processedData[i]['subject'], {
                 x: '2%',
-                y: 0.2,
+                y: 0.1,
                 align: 'center',
                 bold: true,
-                h: 1.5,
+                h: 1.3,
                 w: '96%',
-                fontSize: ((processedData[i]['subject'].length <= 40) ? 40 : ((processedData[i]['subject'].length <= 50) ? 35 : (processedData[i]['subject'].length <= 75) ? 25 : 18)),
+                fontSize: ((processedData[i]['subject'].length <= 40) ? 40 : ((processedData[i]['subject'].length <= 60) ? 35 : (processedData[i]['subject'].length <= 100) ? 25 : 18)),
                 isTextBox: true,
                 valign: 'middle'
             });
