@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 valign: 'middle'
             });
             powerpointFunctions.createTextBox(slide, processedData[i]['category'] + '  -  ' + processedData[i]['teacher'], false, 18, 1, 1.6, 'center', false);
-            powerpointFunctions.createTextBox(slide, processedData[i]['message'], false, 14, 1, ((processedData[i]['message'].length < 600) ? 3 : 4), 'center', false);
+            powerpointFunctions.createTextBox(slide, processedData[i]['message'], false, 14, 1, ((processedData[i]['message'].length < 700) ? 2.5 : 3.5), 'center', false);
         }
         pres.writeFile(title + '.pptx');
     });
