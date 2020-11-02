@@ -1,5 +1,3 @@
-const { json } = require("body-parser");
-
 let colourPreference;
 document.addEventListener('DOMContentLoaded', () => {
     const url = window.location.href;
