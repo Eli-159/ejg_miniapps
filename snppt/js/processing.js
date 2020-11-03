@@ -163,16 +163,19 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch {
             ok = false;
             invalidDataError.style.display = 'block';
-            invalidDataError.addEventListener('change', () => invalidDataError.style.display = 'none');
+            dataInputSection.addEventListener('change', () => invalidDataError.style.display = 'none');
+            console.log('Error Catch 1');
         }
         if (ok) {
             for (let i = 0; i < rawData.length; i++) {
                 if (rawData[i]['teacher'] == undefined || rawData[i]['category'] == undefined || rawData[i]['subject'] == undefined || rawData[i]['message'] == undefined) {
                     ok = false;
+                    console.log('Error Catch 2');
                 }
             }
         }
         if (ok) {
+            console.log('Ok');
             inputData.disabled = true;
             gradeSelector.disabled = true;
             submitBtn.disabled = true;
