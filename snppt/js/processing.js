@@ -162,20 +162,17 @@ document.addEventListener('DOMContentLoaded', () => {
             rawData = JSON.parse(inputData.value);
         } catch {
             ok = false;
-            invalidDataError.style.display = 'block';
-            dataInputSection.addEventListener('change', () => invalidDataError.style.display = 'none');
-            console.log('Error Catch 1');
+            console.error('Invalid Data Input - Couldn\'t Parse Object');
         }
         if (ok) {
             for (let i = 0; i < rawData.length; i++) {
                 if (rawData[i]['teacher'] == undefined || rawData[i]['category'] == undefined || rawData[i]['subject'] == undefined || rawData[i]['message'] == undefined) {
                     ok = false;
-                    console.log('Error Catch 2');
+                    console.error('Invalid Data Input - Missing Data Points');
                 }
             }
         }
         if (ok) {
-            console.log('Ok');
             inputData.disabled = true;
             gradeSelector.disabled = true;
             submitBtn.disabled = true;
@@ -220,6 +217,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             postSubmitControls.style.display = 'block';
+        } else {
+            invalidDataError.style.display = 'block';
+            dataInputSection.addEventListener('change', () => invalidDataError.style.display = 'none');
         }
     });
 
