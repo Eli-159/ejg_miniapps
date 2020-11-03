@@ -163,11 +163,14 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch {
             ok = false;
             invalidDataError.style.display = 'block';
-            const hideErrorText = () => {
-                invalidDataError.style.display = 'none';
-                invalidDataError.removeEventListener('change', hideErrorText);
+            invalidDataError.addEventListener('change', () => invalidDataError.style.display = 'none');
+        }
+        if (ok) {
+            for (let i = 0; i < rawData.length; i++) {
+                if (rawData[i]['teacher'] == undefined || rawData[i]['category'] == undefined || rawData[i]['subject'] == undefined || rawData[i]['message'] == undefined) {
+                    ok = false;
+                }
             }
-            invalidDataError.addEventListener('change', hideErrorText);
         }
         if (ok) {
             inputData.disabled = true;
