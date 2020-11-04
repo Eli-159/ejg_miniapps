@@ -206,11 +206,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentData['teacher'] = currentData['teacher'].split(' (')[0];
                 currentData['category'] = currentData['category'].split('. ')[1];
                 let relevant = true;
-                for (let i = 0; i < irrelevantCategories.length; i++) {
-                    if (currentData['category'] == irrelevantCategories[i]) {
+                for (let x = 0; x < irrelevantCategories.length; x++) {
+                    if (currentData['category'] == irrelevantCategories[x]) {
                         relevant = false;
                         break;
                     }
+                }
+                let lowerCaseSub = currentData['subject'].toLowerCase();
+                if (lowerCaseSub.includes('dial') || lowerCaseSub.includes('drop in and learn') || lowerCaseSub.includes('drop in & learn')) {
+                    relevant = false;
                 }
                 if (relevant) {
                     processedData.push(currentData);
@@ -231,16 +235,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         let pres = powerpointFunctions.createPresentation();
         let title = pptTitlesById.default();
-        if (includeTitlePage.checked) {
-            const titleId = selectedPptTitle().id;
-            if (titleId == 'blankSlide') {
-                let slide = powerpointFunctions.createSlide(pres, false, colours);
-            } else {
-                title = pptTitlesById[titleId]();
-                let slide = powerpointFunctions.createSlide(pres, includeLogo.checked, colours);
-                powerpointFunctions.createTextBox(slide, title, false, 60, 1, '50%', 'center', true);
+        const setPptTitlePage = () => {
+            if (includeTitlePage.checked) {
+                const titleId = selectedPptTitle().id;
+                if (titleId == 'blankSlide') {
+                    let slide = powerpointFunctions.createSlide(pres, false, colours);
+                } else {
+                    title = pptTitlesById[titleId]();
+                    let slide = powerpointFunctions.createSlide(pres, includeLogo.checked, colours);
+                    powerpointFunctions.createTextBox(slide, title, false, 60, 1, '50%', 'center', true);
+                }
             }
-        }
+        };
+        setPptTitlePage();
         for (let i = 0; i < processedData.length; i++) {
             let slide = powerpointFunctions.createSlide(pres, includeLogo.checked, colours);
             powerpointFunctions.createTextBox(slide, processedData[i]['subject'], {
@@ -257,6 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
             powerpointFunctions.createTextBox(slide, processedData[i]['category'] + '  -  ' + processedData[i]['teacher'], false, 18, 1, 1.6, 'center', false);
             powerpointFunctions.createTextBox(slide, processedData[i]['message'], false, 14, 1, ((processedData[i]['message'].length < 600) ? 2.7 : 3.5), 'center', false);
         }
+        setPptTitlePage();
         pres.writeFile(title + '.pptx');
     });
 
