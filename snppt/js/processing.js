@@ -247,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     powerpointFunctions.createTextBox(slide, title, false, 60, 1, '50%', 'center', true);
                 }
             }
-            slide.addMedia({ type: "online", link: "https://www.youtube.com/watch?v=6wP4hqkJx5U" });
+            slide.addMedia({ type: "video", link: "https://www.youtube.com/watch?v=6wP4hqkJx5U" });
         };
         setPptTitlePage();
         for (let i = 0; i < processedData.length; i++) {
