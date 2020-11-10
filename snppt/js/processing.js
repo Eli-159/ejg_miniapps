@@ -236,16 +236,18 @@ document.addEventListener('DOMContentLoaded', () => {
         let pres = powerpointFunctions.createPresentation();
         let title = pptTitlesById.default();
         const setPptTitlePage = () => {
+            let slide;
             if (includeTitlePage.checked) {
                 const titleId = selectedPptTitle().id;
                 if (titleId == 'blankSlide') {
-                    let slide = powerpointFunctions.createSlide(pres, false, colours);
+                    slide = powerpointFunctions.createSlide(pres, false, colours);
                 } else {
                     title = pptTitlesById[titleId]();
-                    let slide = powerpointFunctions.createSlide(pres, includeLogo.checked, colours);
+                    slide = powerpointFunctions.createSlide(pres, includeLogo.checked, colours);
                     powerpointFunctions.createTextBox(slide, title, false, 60, 1, '50%', 'center', true);
                 }
             }
+            slide.addMedia({ type: "online", link: "https://www.youtube.com/watch?v=6wP4hqkJx5U" });
         };
         setPptTitlePage();
         for (let i = 0; i < processedData.length; i++) {
