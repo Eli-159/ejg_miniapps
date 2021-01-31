@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Forum Feedback Form</title>
+    <script src="./main.js"></script>
+    <script src="./form-funcs.js"></script>
 </head>
 <body>
-    <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScbBOm_Lozg1GOwO26XI2v_2TAQO788EX2o8QvZWjnOFVxBfA/formResponse">
+    <iframe name="hiddenFormResponse" id="hiddenFormResponse" style="display: none;"></iframe>
+    <form id="googleForm", target="hiddenFormResponse", action="https://docs.google.com/forms/u/0/d/e/1FAIpQLScbBOm_Lozg1GOwO26XI2v_2TAQO788EX2o8QvZWjnOFVxBfA/formResponse">
         <input type="text" name="entry.92462623">
         <br>
         <br>
@@ -14,7 +17,7 @@
         <br>
         <br>
         <br>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" id="submitBtn">
     </form>
 </body>
 </html>
