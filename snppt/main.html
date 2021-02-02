@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNPPT App</title>
+    <title>SNPPT Tool</title>
+    <link rel="icon" href="./images/SNPPT_Logo-Small_Dark.png">
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/ppt-popup.css">
     <script src="./js/processing.js"></script>
@@ -12,18 +13,25 @@
 </head>
 <body>
     <header>
-        <h1>Student Notices PowerPoint App</h1>
+        <img src="./images/SNPPT_Logo-Large_Light.png">
+        <nav>
+            <ul>
+                <li><a href="./main.html?#" class="active">Home</a></li>
+                <li><a href="./instructions.html">Set Up</a></li>
+                <li><a href="./view-data.html">View Data</a></li>
+            </ul>
+        </nav>
     </header>
     <br>
     <main>
         <div id='dataInputSection'>
             <h3>Please paste the data copied from the Student Notices page here:</h3>
-            <input type="text" id="inputData">
+            <input type="text" id="inputData" autocomplete="off">
             <div id="invalidDataError">
                 <br>
                 <p>
                     That data was not valid. Please try again. 
-                    If issues persist, go to the 'Instructions' page to report the issue.
+                    If issues persist, go to the 'Set Up' page to report the issue.
                 </p>
             </div>
             <br>
@@ -153,7 +161,7 @@
             </ul>
             <br>
             <p>The Student Notices are copied automatically with a script. If you do not have this, go to the 
-                <a href="./instructions.html">Instructions Page</a>.
+                <a href="./instructions.html">Set Up</a> page.
             </p>
         </div>
     </main>

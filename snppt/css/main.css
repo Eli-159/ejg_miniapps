@@ -1,26 +1,66 @@
 body {
-    background-color: #000066;
+    background-color: #2f3437;
     color: #e6e6e6;
     text-align: center;
+    font-family: 'Arial';
 }
 
 header {
-    background-color: #e6e6e6;
-    color: #000066;
     padding: 1rem;
     font-weight: bold;
     border-radius: 0.5rem;
     margin: auto;
+    width: 100%;
+    max-width: 800px;
+    text-align: left;
+    max-height: 200px;
+}
 
+header > img {
+    width: 50%;
+    max-width: 300px;
+    display: inline-block;
+}
+
+header nav {
+    display: inline-block;
+    max-width: 300px;
+    position: absolute;
+    margin-left: 5%;
+    top: 40px;
+}
+
+header nav > ul {
+    list-style-type: none;
+    display: inline-block;
+}
+
+header nav > ul > li {
+    display: inline;
+    margin: 0 10px;
+}
+
+header nav > ul > li > a {
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+header nav > ul > li:hover > a {
+    color: #ffcc00;
+}
+
+header nav > ul > li > a.active {
+    color: #ffcc00;
+    text-decoration: underline;
 }
 
 main {
-    max-width: 1000px;
+    max-width: 800px;
     margin: auto;
 }
 
 .setTextColor {
-    color: #000066;
+    color:#2f3437;
 }
 
 #pleaseNote {
@@ -34,25 +74,29 @@ main {
     text-align: center;
     border-radius: 0.5rem;
     border: 2px solid #e6e6e6;
-    background-color: #000066;
+    background-color:#2f3437;
     color: #e6e6e6;
     width: 200px;
     height: 30px;
+    outline: none;
+    cursor: pointer;
 }
 
 #inputData {
     text-align: left;
     border-radius: 0.5rem;
     border: 2px solid #e6e6e6;
-    background-color: #000066;
+    background-color:#2f3437;
     color: #e6e6e6;
-    width: 60%;
+    width: 85%;
     height: 25px;
+    outline: none;
+    padding: 1px 5px;
 }
 
 .standardTextInput {
-    color: #000066;
-    border-color: #000066;
+    color:#2f3437;
+    border-color: #2f3437;
     border-radius: 2px;
   }
 
@@ -60,7 +104,7 @@ main {
     text-align: center;
     border-radius: 0.5rem;
     border: 2px solid #e6e6e6;
-    background-color: #000066;
+    background-color: #2f3437;
     color: #e6e6e6;
     min-width: 75px;
     padding: 0.5rem;
@@ -68,9 +112,9 @@ main {
 }
 
 .standard-button:hover {
-    border: 2px solid #000066;
+    border: 2px solid#2f3437;
     background-color: #e6e6e6;
-    color: #000066;
+    color: #2f3437;
     cursor: pointer;
 }
 
@@ -81,20 +125,20 @@ main {
 
 .standard-button:disabled:hover {
     border: 2px solid #666666;
-    background-color: #000066;
+    background-color: #2f3437;
     color: #666666;
-    cursor: not-allowed;
+    cursor: default;
 }
 
 .standard-checkbox {
-    border: 1pt solid #000066;
+    border: 1pt solid #2f3437;
     background-color: #666666;
-    color: #000066;
+    color: #2f3437;
 }
 
 .standard-checkbox:checked:before {
     border: 1pt solid #666666;
-    background: #000066;
+    background: #2f3437;
     color: #666666;
 }
 
