@@ -86,8 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
             colourPreference = JSON.parse(colourPreference);
         } else {
             colourPreference = {
-                backColour: '#000066',
-                textColour: '#666666'
+                backColour: '#2f3437',
+                textColour: '#e6e6e6'
             }
             window.localStorage.setItem('colourPreference', JSON.stringify(colourPreference));
         }
@@ -98,16 +98,16 @@ document.addEventListener('DOMContentLoaded', () => {
         if (pptCustomColours.checked == true) {
             let disabled = false;
             if (/^#[0-9A-F]{6}$/i.test(pptBackColour.value)) {
-                pptBackColour.style['border-color'] = '#000066';
+                pptBackColour.style['border-color'] = '#2f3437';
             } else {
                 disabled = true;
-                pptBackColour.style['border-color'] = '#ff0000';
+                pptBackColour.style['border-color'] = '#e6e6e6';
             }
             if (/^#[0-9A-F]{6}$/i.test(pptTextColour.value)) {
-                pptTextColour.style['border-color'] = '#000066';
+                pptTextColour.style['border-color'] = '#2f3437';
             } else {
                 disabled = true;
-                pptTextColour.style['border-color'] = '#ff0000';
+                pptTextColour.style['border-color'] = '#e6e6e6';
             }
             if (selectedPptTitle() == null && includeTitlePage.checked) {
                 disabled == true;
@@ -271,6 +271,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     viewDataNewPage.addEventListener('click', () => {
         window.sessionStorage.setItem('noticesDataDisplay', JSON.stringify(processedData));
-        window.open('/snppt/view-data.html', '_blank');
+        window.open('./view-data.html', '_blank');
     });
 });
