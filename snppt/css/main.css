@@ -60,38 +60,7 @@ main {
 }
 
 .setTextColor {
-    color:#2f3437;
-}
-
-#pleaseNote {
-    text-align: left;
-    left: 0;
-    bottom: 0;
-    padding: 20px;
-}
-
-#grade {
-    text-align: center;
-    border-radius: 0.5rem;
-    border: 2px solid #e6e6e6;
-    background-color:#2f3437;
-    color: #e6e6e6;
-    width: 200px;
-    height: 30px;
-    outline: none;
-    cursor: pointer;
-}
-
-#inputData {
-    text-align: left;
-    border-radius: 0.5rem;
-    border: 2px solid #e6e6e6;
-    background-color:#2f3437;
-    color: #e6e6e6;
-    width: 85%;
-    height: 25px;
-    outline: none;
-    padding: 1px 5px;
+    color: #2f3437;
 }
 
 .standardTextInput {
@@ -109,10 +78,11 @@ main {
     min-width: 75px;
     padding: 0.5rem;
     text-decoration: none;
+    transition: 0.3s;
+    outline: none;
 }
 
 .standard-button:hover {
-    border: 2px solid#2f3437;
     background-color: #e6e6e6;
     color: #2f3437;
     cursor: pointer;
@@ -145,4 +115,33 @@ main {
 a {
     text-decoration: underline;
     color: #e6e6e6;
+}
+
+table {
+    border-collapse: collapse;
+    border: 3px solid #e6e6e6;
+}
+
+th {
+    border: 2px solid #e6e6e6;
+    padding: 10px;
+}
+
+td {
+    border: 1px solid #e6e6e6;
+    padding: 10px;
+}
+
+img.footer-img {
+    width: 6%;
+    opacity: 0.5;
+    position: fixed;
+    right: 20px;
+    bottom: 20px
+}
+
+@media (max-width: 900px) {
+    img.footer-img {
+        display: none;
+    }
 }

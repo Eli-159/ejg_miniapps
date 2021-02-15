@@ -4,6 +4,10 @@ body {
     text-align: center;
 }
 
+header {
+    display: none;
+}
+
 main {
     max-width: 1000px;
     margin: auto;
@@ -35,5 +39,9 @@ td {
 }
 
 #printSection {
+    display: none;
+}
+
+.footer-img {
     display: none;
 }

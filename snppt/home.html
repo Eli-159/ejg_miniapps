@@ -6,6 +6,7 @@
     <title>SNPPT Tool</title>
     <link rel="icon" href="./images/SNPPT_Logo-Small_Dark.png">
     <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/home.css">
     <link rel="stylesheet" href="./css/ppt-popup.css">
     <script src="./js/processing.js"></script>
     <script src="./js/pptLibary.js"></script>
@@ -16,7 +17,7 @@
         <img src="./images/SNPPT_Logo-Large_Light.png">
         <nav>
             <ul>
-                <li><a href="./main.html?#" class="active">Home</a></li>
+                <li><a href="./home.html?#" class="active">Home</a></li>
                 <li><a href="./instructions.html">Set Up</a></li>
                 <li><a href="./view-data.html">View Data</a></li>
             </ul>
@@ -74,26 +75,12 @@
                             </p>
                             <table>
                                 <tr>
-                                    <td>
-                                        <label for="pptBackColour">Background Colour:</label>
-                                    </td>
-                                    <td>
-                                        <input type="text" class="standardTextInput" id="pptBackColour">
-                                    </td>
-                                    <td>
-                                        <div class="colourPreviewCell" id="backColourPrev"></div>
-                                    </td>
+                                    <td><label for="pptBackColour">Background Colour:</label></td>
+                                    <td><input type="color" class="standardTextInput" id="pptBackColour"></td>
                                 </tr>
                                 <tr>
-                                    <td>
-                                        <label for="pptTextColour">Text Colour:</label> 
-                                    </td>
-                                    <td>
-                                        <input type="text" class="standardTextInput" id="pptTextColour">
-                                    </td>
-                                    <td>
-                                        <div class="colourPreviewCell" id="textColourPrev"></div>
-                                    </td>
+                                    <td><label for="pptTextColour">Text Colour:</label></td>
+                                    <td><input type="color" class="standardTextInput" id="pptTextColour"></td>
                                 </tr>
                             </table>
                             <br>
@@ -165,5 +152,7 @@
             </p>
         </div>
     </main>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScbBOm_Lozg1GOwO26XI2v_2TAQO788EX2o8QvZWjnOFVxBfA/viewform?embedded=true" width="640" height="506" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    <img class="footer-img" src="./images/SNPPT_Logo-Small_Light.png">
 </body>
 </html>
