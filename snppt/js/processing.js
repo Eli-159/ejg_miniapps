@@ -259,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Adds an event listener to the create powerpoint button (in the dialog box).
     createPowerPointBtn.addEventListener('click', () => {
         // Declares an object with the default colours.
-        const colours = {back: '000066', text: 'e6e6e6'};
+        const colours = {back: '2f3437', text: 'e6e6e6'};
         // Updates the colours to the ones inputed if the custom colours checkbox is checked.
         if (pptCustomColours.checked) {
             colours.back = pptBackColour.value;

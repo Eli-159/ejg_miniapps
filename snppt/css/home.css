@@ -28,3 +28,8 @@
     outline: none;
     padding: 1px 5px;
 }
+
+input[type=color] {
+    width: 150px;
+    cursor: pointer;
+}
