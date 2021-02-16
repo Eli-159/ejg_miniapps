@@ -225,27 +225,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Declares a current data variable and loads the current itiration of rawData into it.
                 let currentData = rawData[i];
                 // Updates the teacher data point to exclude their username.
-                currentData['teacher'] = currentData['teacher'].split(' (')[0];
+                currentData.teacher = currentData.teacher.split(' (')[0];
                 // Updates the category data point to exclude its number.
-                currentData['category'] = currentData['category'].split('. ')[1];
+                currentData.category = currentData.category.split('. ')[1];
                 // Declares a variable to hold the relevance of the current itiration of data.
                 let relevant = true;
                 // Loops over the irrelevant categories and tests if the current category matches any of them, setting relevant to false if a match is found.
                 for (let x = 0; x < irrelevantCategories.length; x++) {
-                    if (currentData['category'] == irrelevantCategories[x]) {
+                    if (currentData.category == irrelevantCategories[x]) {
                         relevant = false;
                         break;
                     }
                 }
                 // Tests and removes the notice if its subject includes a reference to DIAL.
-                let lowerCaseSub = currentData['subject'].toLowerCase();
+                let lowerCaseSub = currentData.subject.toLowerCase();
                 if (lowerCaseSub.includes('dial') || lowerCaseSub.includes('drop in and learn') || lowerCaseSub.includes('drop in & learn')) {
                     relevant = false;
                 }
-                // If the data is still marked as relevant, the current data object is pushed to the processed data array.
-                if (relevant) {
-                    processedData.push(currentData);
-                }
+                // Adds a relevant property to the data, set to the relevant variable.
+                currentData.relevant = relevant;
+                // Adds a highlight property to the data, set to the current new property.
+                currentData.highlight = currentData.new;
+                // Pushes the current data to the processed data array.
+                processedData.push(currentData);
             }
             // Shows the postSubmitControls.
             postSubmitControls.style.display = 'block';
@@ -292,24 +294,27 @@ document.addEventListener('DOMContentLoaded', () => {
         setPptTitlePage();
         // Loops over the processed data.
         for (let i = 0; i < processedData.length; i++) {
-            // Creates a slide.
-            let slide = powerpointFunctions.createSlide(pres, includeLogo.checked, colours);
-            // Adds a textbox with the subject.
-            powerpointFunctions.createTextBox(slide, processedData[i]['subject'], {
-                x: '2%',
-                y: 0.1,
-                align: 'center',
-                bold: true,
-                h: 1.3,
-                w: '96%',
-                fontSize: ((processedData[i]['subject'].length <= 50) ? 40 : ((processedData[i]['subject'].length <= 75) ? 35 : (processedData[i]['subject'].length <= 100) ? 25 : 18)),
-                isTextBox: true,
-                valign: 'middle'
-            });
-            // Adds a textbox with the category and teacher.
-            powerpointFunctions.createTextBox(slide, processedData[i]['category'] + '  -  ' + processedData[i]['teacher'], false, 18, 1, 1.6, 'center', false);
-            // Adds a textbox with the message.
-            powerpointFunctions.createTextBox(slide, processedData[i]['message'], false, 14, 1, ((processedData[i]['message'].length < 600) ? 2.7 : 3.5), 'center', false);
+            // Tests if the current data is marked as relevant.
+            if (processedData[i].relevant) {
+                // Creates a slide.
+                let slide = powerpointFunctions.createSlide(pres, includeLogo.checked, colours);
+                // Adds a textbox with the subject.
+                powerpointFunctions.createTextBox(slide, processedData[i]['subject'], {
+                    x: '2%',
+                    y: 0.1,
+                    align: 'center',
+                    bold: true,
+                    h: 1.3,
+                    w: '96%',
+                    fontSize: ((processedData[i]['subject'].length <= 50) ? 40 : ((processedData[i]['subject'].length <= 75) ? 35 : (processedData[i]['subject'].length <= 100) ? 25 : 18)),
+                    isTextBox: true,
+                    valign: 'middle'
+                });
+                // Adds a textbox with the category and teacher.
+                powerpointFunctions.createTextBox(slide, processedData[i]['category'] + '  -  ' + processedData[i]['teacher'], false, 18, 1, 1.6, 'center', false);
+                // Adds a textbox with the message.
+                powerpointFunctions.createTextBox(slide, processedData[i]['message'], false, 14, 1, ((processedData[i]['message'].length < 600) ? 2.7 : 3.5), 'center', false);
+            }
         }
         // Adds another title page at the end.
         setPptTitlePage();
