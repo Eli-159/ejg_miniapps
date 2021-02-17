@@ -43,10 +43,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const customPptTitleInput = document.getElementById('customPptTitleInput');
     // Returns the text title of the powerpoint based on the string id passed in.
     const pptTitlesById = {
-        default: () => {return gradeSelector.value + ' Student Notices'},
-        yearStudentNotices: () => {return gradeSelector.value + ' Student Notices'},
-        yearNotices: () => {return gradeSelector.value + ' Notices'},
-        yearAssembly: () => {return gradeSelector.value + ' Assembly'},
+        default: () => {return processedData.yearLevel + ' Student Notices'},
+        yearStudentNotices: () => {return processedData.yearLevel + ' Student Notices'},
+        yearNotices: () => {return processedData.yearLevel + ' Notices'},
+        yearAssembly: () => {return processedData.yearLevel + ' Assembly'},
         studentNotices: () => {return 'Student Notices'},
         customPptTitle: () => {return customPptTitleInput.value},
         blankSlide: () => {return null}
@@ -73,12 +73,33 @@ document.addEventListener('DOMContentLoaded', () => {
     pptTitleDiv.style.display = 'none';
     pptTitleOpts[0].checked = true;
     
-    // Declares a variable to hold an array of processed data.
-    const processedData = [];
+    // Declares an object that holds functions to load and save it to and from local storage, and hold that data for quick access.
+    const processedData = {
+        load: () => {
+            processedData.data = JSON.parse(window.localStorage.getItem('processedNoticesData'));
+            processedData.yearLevel = window.localStorage.getItem('yearLevel');
+            processedData.validDate = window.localStorage.getItem('noticesDataValidDate');
+        },
+        save: () => {
+            window.localStorage.setItem('processedNoticesData', JSON.stringify(processedData.data));
+            window.localStorage.setItem('yearLevel', processedData.yearLevel);
+            window.localStorage.setItem('noticesDataValidDate', processedData.validDate);
+        },
+        reset: () => {
+            processedData.data = [];
+            processedData.yearLevel = null;
+            processedData.validDate = null;
+            window.localStorage.removeItem('processedNoticesData');
+            window.localStorage.removeItem('yearLevel');
+            window.localStorage.removeItem('noticesDataValidDate');
+        },
+        data: [],
+        yearLevel: null,
+        validDate: null
+    };
 
     // Disables or enables the submit button based on a validation test.
     const validateInputs = () => {
-        console.log('Submit Button Disabled = ' + (gradeSelector.value == 'none' || !(inputData.value).includes('[{') || !(inputData.value).includes('}]')));
         submitBtn.disabled = (gradeSelector.value == 'none' || !(inputData.value).includes('[{') || !(inputData.value).includes('}]'));
     }
 
@@ -194,13 +215,17 @@ document.addEventListener('DOMContentLoaded', () => {
             inputData.disabled = true;
             gradeSelector.disabled = true;
             submitBtn.disabled = true;
+            // Adds the disabled class to the data input section.
+            dataInputSection.classList.add('disabled');
+            // Saves the year level to processedData.
+            processedData.yearLevel = gradeSelector.value;
             // Removes the change event listener on the data input section to validate inputs.
             dataInputSection.removeEventListener('change', validateInputs);
             // Loads all of the elements with the class yearLevelSpan into a variable.
             const yearLevelSpans = document.getElementsByClassName('yearLevelSpan');
             // Loops over all of the found elements and sets their text content to the numerical grade selected (7-12).
             for (let i = 0; i < yearLevelSpans.length; i++) {
-                yearLevelSpans[i].textContent = gradeSelector.value.split(' ')[1];
+                yearLevelSpans[i].textContent = processedData.yearLevel.split(' ')[1];
             }
             // Declares a variable with all of the categories that could be removed as irrelevant.
             const irrelevantCategories = [
@@ -214,12 +239,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 'Senior Schooling'
             ];
             // Removes the relevant categories from the irrelevant categories object.
-            if (gradeSelector.value == 'Year 7' || gradeSelector.value == 'Year 8' || gradeSelector.value == 'Year 9') {
+            if (processedData.yearLevel == 'Year 7' || processedData.yearLevel == 'Year 8' || processedData.yearLevel == 'Year 9') {
                 irrelevantCategories.splice(irrelevantCategories.indexOf('Junior Schooling'), 1);
-            } else if (gradeSelector.value == 'Year 10' || gradeSelector.value == 'Year 11' || gradeSelector.value == 'Year 12') {
+            } else if (processedData.yearLevel == 'Year 10' || processedData.yearLevel == 'Year 11' || processedData.yearLevel == 'Year 12') {
                 irrelevantCategories.splice(irrelevantCategories.indexOf('Senior Schooling'), 1);
             }
-            irrelevantCategories.splice(irrelevantCategories.indexOf(gradeSelector.value), 1);
+            irrelevantCategories.splice(irrelevantCategories.indexOf(processedData.yearLevel), 1);
             // Loops over all of the raw data.
             for (let i = 0; i < rawData.length; i++) {
                 // Declares a current data variable and loads the current itiration of rawData into it.
@@ -247,8 +272,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Adds a highlight property to the data, set to the current new property.
                 currentData.highlight = currentData.new;
                 // Pushes the current data to the processed data array.
-                processedData.push(currentData);
+                processedData.data.push(currentData);
             }
+            // Adds a valid date to processed data and then saves the processed data varaible to local storage.
+            processedData.validDate = getStringDate();
+            processedData.save();
             // Shows the postSubmitControls.
             postSubmitControls.style.display = 'block';
         } else {
@@ -260,6 +288,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Adds an event listener to the create powerpoint button (in the dialog box).
     createPowerPointBtn.addEventListener('click', () => {
+        // Updates the processed data in the variable.
+        processedData.load();
         // Declares an object with the default colours.
         const colours = {back: '2f3437', text: 'e6e6e6'};
         // Updates the colours to the ones inputed if the custom colours checkbox is checked.
@@ -293,27 +323,27 @@ document.addEventListener('DOMContentLoaded', () => {
         // Adds a title page.
         setPptTitlePage();
         // Loops over the processed data.
-        for (let i = 0; i < processedData.length; i++) {
+        for (let i = 0; i < processedData.data.length; i++) {
             // Tests if the current data is marked as relevant.
-            if (processedData[i].relevant) {
+            if (processedData.data[i].relevant) {
                 // Creates a slide.
                 let slide = powerpointFunctions.createSlide(pres, includeLogo.checked, colours);
                 // Adds a textbox with the subject.
-                powerpointFunctions.createTextBox(slide, processedData[i]['subject'], {
+                powerpointFunctions.createTextBox(slide, processedData.data[i]['subject'], {
                     x: '2%',
                     y: 0.1,
                     align: 'center',
                     bold: true,
                     h: 1.3,
                     w: '96%',
-                    fontSize: ((processedData[i]['subject'].length <= 50) ? 40 : ((processedData[i]['subject'].length <= 75) ? 35 : (processedData[i]['subject'].length <= 100) ? 25 : 18)),
+                    fontSize: ((processedData.data[i]['subject'].length <= 50) ? 40 : ((processedData.data[i]['subject'].length <= 75) ? 35 : (processedData.data[i]['subject'].length <= 100) ? 25 : 18)),
                     isTextBox: true,
                     valign: 'middle'
                 });
                 // Adds a textbox with the category and teacher.
-                powerpointFunctions.createTextBox(slide, processedData[i]['category'] + '  -  ' + processedData[i]['teacher'], false, 18, 1, 1.6, 'center', false);
+                powerpointFunctions.createTextBox(slide, processedData.data[i]['category'] + '  -  ' + processedData.data[i]['teacher'], false, 18, 1, 1.6, 'center', false);
                 // Adds a textbox with the message.
-                powerpointFunctions.createTextBox(slide, processedData[i]['message'], false, 14, 1, ((processedData[i]['message'].length < 600) ? 2.7 : 3.5), 'center', false);
+                powerpointFunctions.createTextBox(slide, processedData.data[i]['message'], false, 14, 1, ((processedData.data[i]['message'].length < 600) ? 2.7 : 3.5), 'center', false);
             }
         }
         // Adds another title page at the end.
@@ -324,8 +354,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Adds a click event listener to the view data button.
     viewDataNewPage.addEventListener('click', () => {
-        // Adds the proccessed data to session storage and opens the page in a new tab.
-        window.sessionStorage.setItem('noticesDataDisplay', JSON.stringify(processedData));
+        // Opens the page in a new tab.
         window.open('./view-data.html', '_blank');
     });
+
+    // The saved data is loaded.
+    processedData.load();
+    if (processedData.data != null && processedData.yearLevel != null && processedData.validDate == getStringDate()) {
+        // Sets the input data field's value to the processed data saved and the grade selector to the saved one.
+        inputData.value = JSON.stringify(processedData.data);
+        gradeSelector.value = processedData.yearLevel;
+        // Disables the data input, grade selector and submit button.
+        inputData.disabled = true;
+        gradeSelector.disabled = true;
+        submitBtn.disabled = true;
+        // Adds the disabled class to the data input section.
+        dataInputSection.classList.add('disabled');
+        // Removes the change event listener on the data input section to validate inputs.
+        dataInputSection.removeEventListener('change', validateInputs);
+        // Loads all of the elements with the class yearLevelSpan into a variable.
+        const yearLevelSpans = document.getElementsByClassName('yearLevelSpan');
+        // Loops over all of the found elements and sets their text content to the numerical grade selected (7-12).
+        for (let i = 0; i < yearLevelSpans.length; i++) {
+            yearLevelSpans[i].textContent = processedData.yearLevel.split(' ')[1];
+        }
+        // Shows the postSubmitControls.
+        postSubmitControls.style.display = 'block';
+    } else {
+        processedData.reset();
+    }
 });

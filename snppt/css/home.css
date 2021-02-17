@@ -17,6 +17,11 @@
     cursor: pointer;
 }
 
+#grade:disabled {
+    border: 2px solid #666666;
+    color: #666666;
+}
+
 #inputData {
     text-align: left;
     border-radius: 0.5rem;
@@ -27,9 +32,21 @@
     height: 25px;
     outline: none;
     padding: 1px 5px;
+    transition: 0.5s;
+}
+
+#inputData:disabled {
+    border: 2px solid #666666;
+    color: #666666;
 }
 
 input[type=color] {
     width: 150px;
     cursor: pointer;
+    transition: 0.5s;
+}
+
+.disabled * {
+    color: #666666;
+    transition: 0.5s;
 }

@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const savedData = window.sessionStorage.getItem('noticesDataDisplay');
+    const savedData = window.localStorage.getItem('processedNoticesData');
     const table = document.getElementById('noticesTable');
     const tableContainer = document.getElementById('tableContainer');
     const errorMessage = document.getElementById('error');
