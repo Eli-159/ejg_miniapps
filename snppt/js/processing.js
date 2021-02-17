@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const invalidDataError = document.getElementById('invalidDataError');
     const gradeSelector = document.getElementById('grade');
     const viewDataNewPage = document.getElementById('viewDataNewPage');
+    const clearDataBtn = document.getElementById('clearSavedData');
     
     // Loads all of the required powerpoint options page elements into variables.
     const pptCustomColours = document.getElementById('pptCustomColours');
@@ -357,6 +358,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // Opens the page in a new tab.
         window.open('./view-data.html', '_blank');
     });
+
+    // Adds a click event listener to the clear data button.
+    clearDataBtn.addEventListener('click', () => {
+        // Resets the processed data variable and the related data stored in local storage.
+        processedData.reset();
+        // Reloads the page.
+        window.history.go();
+    })
 
     // The saved data is loaded.
     processedData.load();
