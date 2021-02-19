@@ -1,8 +1,10 @@
 #pleaseNote {
-    text-align: left;
+    text-align: center;
     left: 0;
     bottom: 0;
     padding: 20px;
+    margin: auto;
+    transition: 0.5s;
 }
 
 #grade {
@@ -50,3 +52,66 @@ input[type=color] {
     color: #666666;
     transition: 0.5s;
 }
+
+#editDataSection {
+    margin: auto;
+    width: 95%;
+    max-width: 800px;
+    transition: 0.5s;
+}
+
+#editDataTable {
+    margin: auto;
+    width: 100%;
+}
+
+.editDataSubjectTextarea,
+.editDataMessageTextarea {
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    background-color: #2f3437;
+    outline: none;
+    color: #e6e6e6;
+    font-family: calibri;
+    font-size: 15px;
+}
+
+.editDataSubjectTextarea::-webkit-scrollbar,
+.editDataMessageTextarea::-webkit-scrollbar {
+    width: 12px;
+    cursor: default;
+  }
+   
+  .editDataSubjectTextarea::-webkit-scrollbar-track,
+  .editDataMessageTextarea::-webkit-scrollbar-track {
+    background-color: #232729;
+    border-radius: 5px;
+  }
+   
+  .editDataSubjectTextarea::-webkit-scrollbar-thumb,
+  .editDataMessageTextarea::-webkit-scrollbar-thumb {
+    background-color: #acb4b9;
+    outline: none;
+    border-radius: 5px;
+    cursor: default;
+  }
+
+  .editDataSubjectTextarea::-webkit-scrollbar-button,
+  .editDataMessageTextarea::-webkit-scrollbar-button {
+    display: none;
+  }
+
+  .editDataSubjectTextarea::-webkit-scrollbar-corner,
+  .editDataMessageTextarea::-webkit-scrollbar-corner {
+    background-color: #2f3437;
+    border: none;
+    outline: none;
+  }
+
+  .editDataSubjectTextarea::-webkit-resizer,
+  .editDataMessageTextarea::-webkit-resizer {
+    border: none;
+    outline: none;
+  }

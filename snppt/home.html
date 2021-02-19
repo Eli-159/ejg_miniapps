@@ -57,6 +57,10 @@
         <br>
         <br>
         <div id="postSubmitControls">
+            <input type="button" value="Edit Data" class="standard-button" id="editDataBtn">
+            <br>
+            <br>
+            <br>
             <a href="#pptPopupBtn" class="standard-button">Create PowerPoint</a>
 
             <div id="pptPopupBtn" class="overlay">
@@ -67,13 +71,6 @@
                         <input type="checkbox" class="standard-checkbox" id="pptCustomColours">
                         <label for="pptCustomColours">Custom Colours</label>
                         <div id='pptPickColours'>
-                            <p>
-                                Please use a 6 digit hex colour, such as those found 
-                                <a href="https://www.w3schools.com/colors/colors_picker.asp" class="setTextColor" target="blank">here</a>. 
-                                Your colour choices will automatically be remembered for next time you open this page. 
-                                These colours will only be applied if the 'Custom Colours' box is ticked.
-                                If this box is not ticked, it will default to the same colour scheme as this page.
-                            </p>
                             <table>
                                 <tr>
                                     <td><label for="pptBackColour">Background Colour:</label></td>
@@ -135,28 +132,28 @@
         </div>
         <br>
         <br>
-        <div id='pleaseNote'>
-            <p>
-                Please note:
-                <br>
-                The data will be filtered based on the relivence of the category for your chosen grade. This means that some of the following categories will not be included:
-            </p>
-            <ul>
-                <li>Year 7</li>
-                <li>Year 9</li>
-                <li>Year 8</li>
-                <li>Year 10</li>
-                <li>Year 11</li>
-                <li>Year 12</li>
-                <li>Junior Schooling</li>
-                <li>Senior Schooling</li>
-            </ul>
-            <br>
-            <p>The Student Notices are copied automatically with a script. If you do not have this, go to the 
-                <a href="./instructions.html">Set Up</a> page.
-            </p>
-        </div>
     </main>
+    <div class="hide" id="editDataSection">
+        <table id="editDataTable">
+            <tr>
+                <th class="displayTableCell">Display</th>
+                <th class="categoryTableCell">Category</th>
+                <th class="subjectTableCell">Subject</th>
+                <th class="messageTableCell">Message</th>
+                <th class="teacherTableCell">Teacher</th>
+                <th class="highlightTableCell">Highlight</th>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <input type="button" value="Save" class="standard-button" id="saveEditedData">
+    </div>
+    <div id='pleaseNote'>
+        <p>
+            The Student Notices are copied automatically with a script. If you do not have this, go to the 
+            <a href="./instructions.html">Set Up</a> page.
+        </p>
+    </div>
     <img class="footer-img" src="./images/SNPPT_Logo-Small_Light.png">
 </body>
 </html>

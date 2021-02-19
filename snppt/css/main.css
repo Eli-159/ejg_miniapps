@@ -57,6 +57,7 @@ header nav > ul > li > a.active {
 main {
     max-width: 800px;
     margin: auto;
+    transition: 0.5s;
 }
 
 .setTextColor {
@@ -137,11 +138,18 @@ img.footer-img {
     opacity: 0.5;
     position: fixed;
     right: 20px;
-    bottom: 20px
+    bottom: 20px;
+    transition: 0.5s;
 }
 
 @media (max-width: 900px) {
     img.footer-img {
         display: none;
     }
+}
+
+.hide {
+    opacity: 0;
+    visibility: hidden;
+    max-height: 0px;
 }

@@ -21,9 +21,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const dataInputSection = document.getElementById('dataInputSection');
     const invalidDataError = document.getElementById('invalidDataError');
     const gradeSelector = document.getElementById('grade');
+    const editDataBtn = document.getElementById('editDataBtn');
     const viewDataNewPage = document.getElementById('viewDataNewPage');
     const clearDataBtn = document.getElementById('clearSavedData');
+    const pleaseNote = document.getElementById('pleaseNote');
+    const footerImg = document.getElementsByClassName('footer-img')[0];
     
+    // Loads all of the edit data elements into variables.
+    const editDataSection = document.getElementById('editDataSection');
+    const editDataTable = document.getElementById('editDataTable');
+    const main = document.getElementsByTagName('main')[0];
+    const editDataSaveBtn = document.getElementById('saveEditedData');
+
     // Loads all of the required powerpoint options page elements into variables.
     const pptCustomColours = document.getElementById('pptCustomColours');
     const pptPickColours = document.getElementById('pptPickColours');
@@ -353,6 +362,71 @@ document.addEventListener('DOMContentLoaded', () => {
         pres.writeFile(title + '.pptx');
     });
 
+    // Adds a click event listener to the edit data button.
+    editDataBtn.addEventListener('click', () => {
+        // Updates the data in processed data.
+        processedData.load();
+        // Loops over the processed notices data.
+        for (let i = 0; i < processedData.data.length; i++) {
+            // Creates a table row.
+            const tr = document.createElement('tr');
+            // Creates a table cell, adds a checkbox and appends it to the table row. Checkbox indicative of the relevent field of the data.
+            const tdDisplay = document.createElement('td');
+            const displayInput = document.createElement('input');
+            displayInput.type = 'checkbox';
+            displayInput.checked = processedData.data[i].relevant
+            displayInput.classList.add('editDataDisplayCheckbox');
+            tdDisplay.appendChild(displayInput);
+            tr.appendChild(tdDisplay);
+            // Creates a table cell, adds some text and appends it to the table row. Text indicative of the category field of the data.
+            const tdCategory = document.createElement('td');
+            const categoryText = document.createTextNode(processedData.data[i].category);
+            tdCategory.appendChild(categoryText);
+            tr.appendChild(tdCategory);
+            // Creates a table cell, adds a textarea and appends it to the table row. Textarea indicative of the subject field of the data.
+            const tdSubject = document.createElement('td');
+            const subjectInput = document.createElement('textarea');
+            subjectInput.cols = '30';
+            subjectInput.rows = '3';
+            subjectInput.value = processedData.data[i].subject;
+            subjectInput.classList.add('editDataSubjectTextarea');
+            tdSubject.appendChild(subjectInput);
+            tr.appendChild(tdSubject);
+            // Creates a table cell, adds a textarea and appends it to the table row. Textarea indicative of the message field of the data.
+            const tdMessage = document.createElement('td');
+            const messageInput = document.createElement('textarea');
+            messageInput.value = processedData.data[i].message;
+            messageInput.cols = '40';
+            messageInput.rows = '5';
+            messageInput.classList.add('editDataMessageTextarea');
+            tdMessage.appendChild(messageInput);
+            tr.appendChild(tdMessage);
+            // Creates a table cell, adds some text and appends it to the table row. Text indicative of the teacher field of the data.
+            const tdTeacher = document.createElement('td');
+            const teacherText = document.createTextNode(processedData.data[i].teacher);
+            tdTeacher.appendChild(teacherText);
+            tr.appendChild(tdTeacher);
+            // Creates a table cell, adds a checkbox and appends it to the table row. Checkbox indicative of the highlight field of the data.
+            const tdHighlight = document.createElement('td');
+            const highlightInput = document.createElement('input');
+            highlightInput.type = 'checkbox';
+            highlightInput.checked = processedData.data[i].highlight;
+            highlightInput.classList.add('editDataHighlightCheckbox');
+            tdHighlight.appendChild(highlightInput);
+            tr.appendChild(tdHighlight);
+            // Appends the table row to the table.
+            editDataTable.appendChild(tr);
+        }
+        // Hides elements on the page that are unwanted.
+        main.classList.add('hide');
+        pleaseNote.classList.add('hide');
+        // Wits for half a second and then shows the edit data section.
+        setTimeout(() => {
+            editDataSection.classList.remove('hide');
+            pleaseNote.classList.remove('hide');
+        }, 500);
+    });
+
     // Adds a click event listener to the view data button.
     viewDataNewPage.addEventListener('click', () => {
         // Opens the page in a new tab.
@@ -365,7 +439,7 @@ document.addEventListener('DOMContentLoaded', () => {
         processedData.reset();
         // Reloads the page.
         window.history.go();
-    })
+    });
 
     // The saved data is loaded.
     processedData.load();
