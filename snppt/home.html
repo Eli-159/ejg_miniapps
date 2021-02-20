@@ -48,14 +48,10 @@
                 <option value="Year 11">Year 11</option>
                 <option value="Year 12">Year 12</option>
             </select>
+            <br>
+            <br>
+            <input type="button" value="Submit" id="submit" class="standard-button">
         </div>
-        <br>
-        <br>
-        <input type="button" value="Submit" id="submit" class="standard-button">
-        <br>
-        <br>
-        <br>
-        <br>
         <div id="postSubmitControls">
             <input type="button" value="Edit Data" class="standard-button" id="editDataBtn">
             <br>
@@ -132,28 +128,28 @@
         </div>
         <br>
         <br>
+        <div id="editDataSection">
+            <table id="editDataTable">
+                <tr>
+                    <th class="displayTableCell">Display</th>
+                    <th class="categoryTableCell">Category</th>
+                    <th class="subjectTableCell">Subject</th>
+                    <th class="messageTableCell">Message</th>
+                    <th class="teacherTableCell">Teacher</th>
+                    <th class="highlightTableCell">Highlight</th>
+                </tr>
+            </table>
+            <br>
+            <br>
+            <input type="button" value="Save" class="standard-button" id="saveEditedData">
+        </div>
+        <div id='pleaseNote'>
+            <p>
+                The Student Notices are copied automatically with a script. If you do not have this, go to the 
+                <a href="./instructions.html">Set Up</a> page.
+            </p>
+        </div>
     </main>
-    <div class="hide" id="editDataSection">
-        <table id="editDataTable">
-            <tr>
-                <th class="displayTableCell">Display</th>
-                <th class="categoryTableCell">Category</th>
-                <th class="subjectTableCell">Subject</th>
-                <th class="messageTableCell">Message</th>
-                <th class="teacherTableCell">Teacher</th>
-                <th class="highlightTableCell">Highlight</th>
-            </tr>
-        </table>
-        <br>
-        <br>
-        <input type="button" value="Save" class="standard-button" id="saveEditedData">
-    </div>
-    <div id='pleaseNote'>
-        <p>
-            The Student Notices are copied automatically with a script. If you do not have this, go to the 
-            <a href="./instructions.html">Set Up</a> page.
-        </p>
-    </div>
     <img class="footer-img" src="./images/SNPPT_Logo-Small_Light.png">
 </body>
 </html>

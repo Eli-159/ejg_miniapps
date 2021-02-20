@@ -75,9 +75,41 @@ document.addEventListener('DOMContentLoaded', () => {
         return null;
     }
 
+    // Changes the section of home.html shown on screen.
+    const changeShownSection = (show, cb, fade = true) => {
+        // Declares a sub-function, so that the response can be changed based on the fade attribute.
+        const changeDisplayProperties = () => {
+            // Sets the display of the three primary sections to none.
+            dataInputSection.style.display = 'none';
+            postSubmitControls.style.display = 'none';
+            editDataSection.style.display = 'none';
+            // Sets the display of the element passed in through show to block.
+            show.style.display = 'block';
+            // Calls the callback if it is a function.
+            if (typeof cb == 'function') {
+                cb();
+            }
+        }
+        // Tests what the fade condition is set to and responds appropriately.
+        if (fade === false) {
+            // Calls the changeDisplayProperties function to change what is shown on screen.
+            changeDisplayProperties();
+        } else {
+            // Hides the main element.
+            main.classList.add('hide');
+            // Waits for half a second, so that the css can fade it off.
+            setTimeout(() => {
+                // Calls the changeDisplayProperties function to change what will be shown on screen.
+                changeDisplayProperties();
+                // Removes the hide class on the main element, meaning the new section is faded on.
+                main.classList.remove('hide');
+            }, 500);
+        }
+    }
+
     // Sets some default starting attributes to elements.
+    changeShownSection(dataInputSection, null, false);
     invalidDataError.style.display = 'none';
-    postSubmitControls.style.display = 'none';
     submitBtn.disabled = true;
     pptPickColours.style.display = 'none';
     pptTitleDiv.style.display = 'none';
@@ -288,7 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
             processedData.validDate = getStringDate();
             processedData.save();
             // Shows the postSubmitControls.
-            postSubmitControls.style.display = 'block';
+            changeShownSection(postSubmitControls);
         } else {
             // If the data was not 'ok', an error message is shown and an input event listner added to the inputData element to hide the error again.
             invalidDataError.style.display = 'block';
@@ -417,26 +449,14 @@ document.addEventListener('DOMContentLoaded', () => {
             // Appends the table row to the table.
             editDataTable.appendChild(tr);
         }
-        // Hides elements on the page that are unwanted.
-        main.classList.add('hide');
-        pleaseNote.classList.add('hide');
-        // Wits for half a second and then shows the edit data section.
-        setTimeout(() => {
-            editDataSection.classList.remove('hide');
-            pleaseNote.classList.remove('hide');
-        }, 500);
+        // Fades to the edit data section.
+        changeShownSection(editDataSection);
     });
 
     // Adds a click event listener to the submit button on the edit data page.
     editDataSaveBtn.addEventListener('click', () => {
-        // Hides the edit data and please note sections.
-        editDataSection.classList.add('hide');
-        pleaseNote.classList.add('hide');
-        // Waits for half a second.
-        setTimeout(() => {
-            // Shows the main and please note sections.
-            main.classList.remove('hide');
-            pleaseNote.classList.remove('hide');
+        // Fades to the post submit controls section and sets a callback to save the data.
+        changeShownSection(postSubmitControls, () => {
             // Loads all of the table rows (trs) from the edit data table into a variable.
             const trs = editDataTable.getElementsByTagName('tr');
             // Tests that the number of table rows is one more than the length of the processedData.data array.
@@ -492,7 +512,7 @@ document.addEventListener('DOMContentLoaded', () => {
             yearLevelSpans[i].textContent = processedData.yearLevel.split(' ')[1];
         }
         // Shows the postSubmitControls.
-        postSubmitControls.style.display = 'block';
+        changeShownSection(postSubmitControls, null, false);
     } else {
         processedData.reset();
     }
