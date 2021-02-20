@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < displayData.length; i++) {
             if (displayData[i].relevant) {
                 const tableRow = document.createElement('tr');
-                tableRow.classList.add((displayData[i].new) ? 'newNotice' : 'oldNotice');
+                tableRow.classList.add((displayData[i].highlight) ? 'highlightNotice' : 'standardNotice');
                 let tableCell = document.createElement('td');
                 let text = document.createTextNode(displayData[i].category);
                 tableCell.appendChild(text);
