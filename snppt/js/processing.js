@@ -369,7 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Tests if the current data is marked as relevant.
             if (processedData.data[i].relevant) {
                 // Creates a slide.
-                let slide = powerpointFunctions.createSlide(pres, includeLogo.checked, colours);
+                const slide = powerpointFunctions.createSlide(pres, includeLogo.checked, colours);
                 // Adds a textbox with the subject.
                 powerpointFunctions.createTextBox(slide, processedData.data[i]['subject'], {
                     x: '2%',
@@ -384,8 +384,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 // Adds a textbox with the category and teacher.
                 powerpointFunctions.createTextBox(slide, processedData.data[i]['category'] + '  -  ' + processedData.data[i]['teacher'], false, 18, 1, 1.6, 'center', false);
+                // Declares a variable containing an approximate line count for the notice message.
+                const lineCount = ((processedData.data[i]['message'].length)/100)+((processedData.data[i]['message'].split('\n').length)*0.75)+1;
                 // Adds a textbox with the message.
-                powerpointFunctions.createTextBox(slide, processedData.data[i]['message'], false, 14, 1, ((processedData.data[i]['message'].length < 600) ? 2.7 : 3.5), 'center', false);
+                powerpointFunctions.createTextBox(slide, processedData.data[i]['message'], {
+                    x: '5%',
+                    y: (((50-lineCount)*1.5>35 ? 50-lineCount : 35).toString()+'%'),
+                    align: 'center',
+                    h: ((lineCount*4).toString()+'%'),
+                    w: '90%',
+                    fontSize: 14,
+                    isTextBox: true,
+                    valign: 'top'
+                }, 14, 1, ((processedData.data[i]['message'].length < 600) ? 2.7 : 3.5), 'center', false);
             }
         }
         // Adds another title page at the end.
