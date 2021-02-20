@@ -427,6 +427,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 500);
     });
 
+    // Adds a click event listener to the submit button on the edit data page.
+    editDataSaveBtn.addEventListener('click', () => {
+        // Hides the edit data and please note sections.
+        editDataSection.classList.add('hide');
+        pleaseNote.classList.add('hide');
+        // Waits for half a second.
+        setTimeout(() => {
+            // Shows the main and please note sections.
+            main.classList.remove('hide');
+            pleaseNote.classList.remove('hide');
+            // Loads all of the table rows (trs) from the edit data table into a variable.
+            const trs = editDataTable.getElementsByTagName('tr');
+            // Tests that the number of table rows is one more than the length of the processedData.data array.
+            if (trs.length-1 == processedData.data.length) {
+                // Loops over all of the table rows, until there is only one left.
+                for (let i = 0; trs.length > 1; i++) {
+                    // Updates the relevant, subject, message and highlight fields in processedData to match the data entered into the inputs.
+                    processedData.data[i].relevant = trs[1].getElementsByClassName('editDataDisplayCheckbox')[0].checked;
+                    processedData.data[i].subject = trs[1].getElementsByClassName('editDataSubjectTextarea')[0].value;
+                    processedData.data[i].message = trs[1].getElementsByClassName('editDataMessageTextarea')[0].value;
+                    processedData.data[i].highlight = trs[1].getElementsByClassName('editDataHighlightCheckbox')[0].checked;
+                    // Removes the table row.
+                    trs[1].remove();
+                }
+            }
+            // Saves the new processed data to local storage.
+            processedData.save();
+        }, 500);
+    });
+
     // Adds a click event listener to the view data button.
     viewDataNewPage.addEventListener('click', () => {
         // Opens the page in a new tab.
