@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Data - SNPPT App</title>
     <script src="./js/data-view.js"></script>
+    <script src="./js/general-funcs.js"></script>
     <link rel="stylesheet" href="./css/main.css" id="mainPageCss" media="screen">
     <link rel="stylesheet" href="./css/data-view-print.css" id="printPageCss" media="print">
 </head>
@@ -13,13 +14,13 @@
         <img src="./images/SNPPT_Logo-Large_Light.png">
         <nav>
             <ul>
-                <li><a href="./home.html?#">Home</a></li>
-                <li><a href="./instructions.html">Set Up</a></li>
-                <li><a href="./view-data.html" class="active">View Data</a></li>
+                <li><a href="./home.html?#" class="stop-page-load-transition">Home</a></li>
+                <li><a href="./instructions.html" class="stop-page-load-transition">Set Up</a></li>
+                <li><a href="./view-data.html" class="active stop-page-load-transition">View Data</a></li>
             </ul>
         </nav>
     </header>
-    <main>
+    <main class="stop-page-load-transition">
         <br>
         <br>
         <div id="tableContainer">

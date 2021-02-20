@@ -18,15 +18,15 @@
         <img src="./images/SNPPT_Logo-Large_Light.png">
         <nav>
             <ul>
-                <li><a href="./home.html?#" class="active">Home</a></li>
-                <li><a href="./instructions.html">Set Up</a></li>
-                <li><a href="./view-data.html">View Data</a></li>
+                <li><a href="./home.html?#" class="active stop-page-load-transition">Home</a></li>
+                <li><a href="./instructions.html" class="stop-page-load-transition">Set Up</a></li>
+                <li><a href="./view-data.html" class="stop-page-load-transition">View Data</a></li>
             </ul>
         </nav>
     </header>
     <br>
-    <main>
-        <div id='dataInputSection'>
+    <main class="stop-page-load-transition">
+        <div id='dataInputSection' class="stop-page-load-transition">
             <h3>Please paste the data copied from the Student Notices page here:</h3>
             <input type="text" id="inputData" autocomplete="off">
             <div id="invalidDataError">
@@ -52,7 +52,7 @@
             <br>
             <input type="button" value="Submit" id="submit" class="standard-button">
         </div>
-        <div id="postSubmitControls">
+        <div id="postSubmitControls" class="stop-page-load-transition">
             <input type="button" value="Edit Data" class="standard-button" id="editDataBtn">
             <br>
             <br>
@@ -128,7 +128,7 @@
         </div>
         <br>
         <br>
-        <div id="editDataSection">
+        <div id="editDataSection" class="stop-page-load-transition">
             <table id="editDataTable">
                 <tr>
                     <th class="displayTableCell">Display</th>
@@ -143,7 +143,7 @@
             <br>
             <input type="button" value="Save" class="standard-button" id="saveEditedData">
         </div>
-        <div id='pleaseNote'>
+        <div id='pleaseNote' class="stop-page-load-transition">
             <p>
                 The Student Notices are copied automatically with a script. If you do not have this, go to the 
                 <a href="./instructions.html">Set Up</a> page.
