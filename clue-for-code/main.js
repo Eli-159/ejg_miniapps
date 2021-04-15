@@ -54,7 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             let clueData;
             if (localCodeSourcePref) {
-                console.log(window.localStorage.getItem('clueData'));
                 clueData = window.localStorage.getItem('clueData');
             } else {
                 clueData = onlineJsonData;
@@ -62,7 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (clueData == undefined) {
                 clueData = {};
             } else {
-                console.log(clueData);
                 clueData = JSON.parse(clueData);
             }
             if (clueData[codeInput.value] != undefined) {
