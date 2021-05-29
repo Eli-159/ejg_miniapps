@@ -304,6 +304,44 @@ document.addEventListener('DOMContentLoaded', () => {
                         break;
                     }
                 }
+                // Gets the year level number, as an integer.
+                const yearNum = parseInt(processedData.yearLevel.split(' ')[1]);
+                // Gets all instances of references to year levels in the notice subject.
+                const yearMatchRegEx = /(year|grade|yr|y|g)\s?([7-9]|1[0-2])(\s?(to|-|or|and|&)\s?((year|grade|yr|y|g)\s?)?([7-9]|1[0-2]))?/g;
+                const yearLevelRefs = currentData.subject.toLowerCase().match(yearMatchRegEx);
+                // Tests if any references were found.
+                if (yearLevelRefs != null && yearLevelRefs.length > 0) {
+                    // Declares a variable that holds if a reference to the year level selected are found in the subject of this notice.
+                    let yearNumRef = false;
+                    // Loops over all of the references found.
+                    for (let x = 0; x < yearLevelRefs.length; x++) {
+                        // Gets all of the numbers included in the current reference.
+                        const numRefs = yearLevelRefs[0].match(/[0-9]+/g);
+                        // Declares variables to hold boolean data on the numbers found.
+                        let exactMatch = false;
+                        let moreThanMatch = false;
+                        let lessThanMatch = false;
+                        // Loops over all of the numbers found in the current reference.
+                        for (let y = 0; y < numRefs.length; y++) {
+                            // Converts the current number to an integer.
+                            const matchNum = parseInt(numRefs[y]);
+                            // Tests the value of the number in relation to the year level selected and sets the previously declared variable appropriately.
+                            if (matchNum == yearNum) exactMatch = true;
+                            if (matchNum > yearNum) moreThanMatch = true;
+                            if (matchNum < yearNum) lessThanMatch = true;
+                        }
+                        // Tests for matches, setting the yearNumRef variable to true and breaking the loop if a match is found.
+                        if (exactMatch) {
+                            yearNumRef = true;
+                            break;
+                        } else if (moreThanMatch && lessThanMatch && yearLevelRefs[0].match(/to|-/g) != undefined) {
+                            yearNumRef = true;
+                            break;
+                        }
+                    }
+                    // Sets the relevant field of the current notice to false if year level references were found but none to the selected year level.
+                    if (!yearNumRef) relevant = false;
+                }
                 // Tests and removes the notice if its subject includes a reference to DIAL.
                 let lowerCaseSub = currentData.subject.toLowerCase();
                 if (lowerCaseSub.includes('dial') || lowerCaseSub.includes('drop in and learn') || lowerCaseSub.includes('drop in & learn')) {
