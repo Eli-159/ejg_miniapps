@@ -257,8 +257,6 @@ document.addEventListener('DOMContentLoaded', () => {
             inputData.disabled = true;
             gradeSelector.disabled = true;
             submitBtn.disabled = true;
-            // Adds the disabled class to the data input section.
-            dataInputSection.classList.add('disabled');
             // Saves the year level to processedData.
             processedData.yearLevel = gradeSelector.value;
             // Removes the change event listener on the data input section to validate inputs.
@@ -295,6 +293,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentData.teacher = currentData.teacher.split(' (')[0];
                 // Updates the category data point to exclude its number.
                 currentData.category = currentData.category.split('. ')[1];
+                // Removes whitespace from the subject and message fields.
+                currentData.subject = currentData.subject.trim();
+                currentData.message = currentData.message.trim();
+                // Gets an array of all the words in the subject.
+                const subjectWords = currentData.subject.split(' ');
+                // Loops over all of the words from the subject.
+                for (let x = 0; x < subjectWords.length; x++) {
+                    // Tests for any matches between the current word and words that do not need capitalisation.
+                    const notNeedCapitalise = subjectWords[x].toLowerCase().match(/(and|an|at|a|the|for|nor|or|but|by|yet|so|from|at|of|on|to)/g);
+                    // Capatalises the first letter of all words unless match black listed words.
+                    if (notNeedCapitalise == undefined || notNeedCapitalise.length == 0 || !(notNeedCapitalise.includes(subjectWords[x].toLowerCase()))) {
+                        subjectWords[x] = subjectWords[x].charAt(0).toUpperCase() + subjectWords[x].slice(1);;
+                    }
+                }
+                // Sets the current subject to the joined array.
+                currentData.subject = subjectWords.join(' ');
                 // Declares a variable to hold the relevance of the current itiration of data.
                 let relevant = true;
                 // Loops over the irrelevant categories and tests if the current category matches any of them, setting relevant to false if a match is found.
