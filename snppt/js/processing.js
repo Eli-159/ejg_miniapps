@@ -257,8 +257,6 @@ document.addEventListener('DOMContentLoaded', () => {
             inputData.disabled = true;
             gradeSelector.disabled = true;
             submitBtn.disabled = true;
-            // Adds the disabled class to the data input section.
-            dataInputSection.classList.add('disabled');
             // Saves the year level to processedData.
             processedData.yearLevel = gradeSelector.value;
             // Removes the change event listener on the data input section to validate inputs.
@@ -295,6 +293,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentData.teacher = currentData.teacher.split(' (')[0];
                 // Updates the category data point to exclude its number.
                 currentData.category = currentData.category.split('. ')[1];
+                // Removes whitespace from the subject and message fields.
+                currentData.subject = currentData.subject.trim();
+                currentData.message = currentData.message.trim();
+                // Gets an array of all the words in the subject.
+                const subjectWords = currentData.subject.split(' ');
+                // Loops over all of the words from the subject.
+                for (let x = 0; x < subjectWords.length; x++) {
+                    // Tests for any matches between the current word and words that do not need capitalisation.
+                    const notNeedCapitalise = subjectWords[x].toLowerCase().match(/(and|an|at|a|the|for|nor|or|but|by|yet|so|from|at|of|on|to)/g);
+                    // Capatalises the first letter of all words unless match black listed words.
+                    if (notNeedCapitalise == undefined || notNeedCapitalise.length == 0 || !(notNeedCapitalise.includes(subjectWords[x].toLowerCase()))) {
+                        subjectWords[x] = subjectWords[x].charAt(0).toUpperCase() + subjectWords[x].slice(1);;
+                    }
+                }
+                // Sets the current subject to the joined array.
+                currentData.subject = subjectWords.join(' ');
                 // Declares a variable to hold the relevance of the current itiration of data.
                 let relevant = true;
                 // Loops over the irrelevant categories and tests if the current category matches any of them, setting relevant to false if a match is found.
@@ -303,6 +317,44 @@ document.addEventListener('DOMContentLoaded', () => {
                         relevant = false;
                         break;
                     }
+                }
+                // Gets the year level number, as an integer.
+                const yearNum = parseInt(processedData.yearLevel.split(' ')[1]);
+                // Gets all instances of references to year levels in the notice subject.
+                const yearMatchRegEx = /(year|grade|yr|y|g)\s?([7-9]|1[0-2])(\s?(to|-|or|and|&)\s?((year|grade|yr|y|g)\s?)?([7-9]|1[0-2]))?/g;
+                const yearLevelRefs = currentData.subject.toLowerCase().match(yearMatchRegEx);
+                // Tests if any references were found.
+                if (yearLevelRefs != null && yearLevelRefs.length > 0) {
+                    // Declares a variable that holds if a reference to the year level selected are found in the subject of this notice.
+                    let yearNumRef = false;
+                    // Loops over all of the references found.
+                    for (let x = 0; x < yearLevelRefs.length; x++) {
+                        // Gets all of the numbers included in the current reference.
+                        const numRefs = yearLevelRefs[0].match(/[0-9]+/g);
+                        // Declares variables to hold boolean data on the numbers found.
+                        let exactMatch = false;
+                        let moreThanMatch = false;
+                        let lessThanMatch = false;
+                        // Loops over all of the numbers found in the current reference.
+                        for (let y = 0; y < numRefs.length; y++) {
+                            // Converts the current number to an integer.
+                            const matchNum = parseInt(numRefs[y]);
+                            // Tests the value of the number in relation to the year level selected and sets the previously declared variable appropriately.
+                            if (matchNum == yearNum) exactMatch = true;
+                            if (matchNum > yearNum) moreThanMatch = true;
+                            if (matchNum < yearNum) lessThanMatch = true;
+                        }
+                        // Tests for matches, setting the yearNumRef variable to true and breaking the loop if a match is found.
+                        if (exactMatch) {
+                            yearNumRef = true;
+                            break;
+                        } else if (moreThanMatch && lessThanMatch && yearLevelRefs[0].match(/to|-/g) != undefined) {
+                            yearNumRef = true;
+                            break;
+                        }
+                    }
+                    // Sets the relevant field of the current notice to false if year level references were found but none to the selected year level.
+                    if (!yearNumRef) relevant = false;
                 }
                 // Tests and removes the notice if its subject includes a reference to DIAL.
                 let lowerCaseSub = currentData.subject.toLowerCase();
@@ -429,7 +481,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Creates a table cell, adds a textarea and appends it to the table row. Textarea indicative of the subject field of the data.
             const tdSubject = document.createElement('td');
             const subjectInput = document.createElement('textarea');
-            subjectInput.cols = '30';
+            subjectInput.cols = '25';
             subjectInput.rows = '3';
             subjectInput.value = processedData.data[i].subject;
             subjectInput.classList.add('editDataSubjectTextarea');
@@ -439,7 +491,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const tdMessage = document.createElement('td');
             const messageInput = document.createElement('textarea');
             messageInput.value = processedData.data[i].message;
-            messageInput.cols = '40';
+            messageInput.cols = '30';
             messageInput.rows = '5';
             messageInput.classList.add('editDataMessageTextarea');
             tdMessage.appendChild(messageInput);

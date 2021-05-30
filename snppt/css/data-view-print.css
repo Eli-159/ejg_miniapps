@@ -1,7 +1,14 @@
+@page {
+    size: A4;
+    margin: 15mm;
+    padding-bottom: 15mm;
+}
+
 body {
     background-color: white;
     color: black;
     text-align: center;
+    padding-bottom: 25mm;
 }
 
 header {
@@ -9,13 +16,17 @@ header {
 }
 
 main {
-    max-width: 1000px;
-    margin: auto;
+    margin: 0 auto;
+    width: 200mm;
 }
 
 table {
     border-collapse: collapse;
     border: 3px solid black;
+}
+
+table:last-child {
+    page-break-after: avoid;
 }
 
 tr {
@@ -44,4 +55,12 @@ td {
 
 .footer-img {
     display: none;
+}
+
+.print-img {
+    width: 80mm;
+    display: block;
+    opacity: 1;
+    text-align: center;
+    margin: auto;
 }
