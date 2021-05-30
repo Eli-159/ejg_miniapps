@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const savedData = window.localStorage.getItem('processedNoticesData');
-    const table = document.getElementById('noticesTable');
+    const table = document.getElementById('noticesInsert');
     const tableContainer = document.getElementById('tableContainer');
     const errorMessage = document.getElementById('error');
     const printBtn = document.getElementById('printBtn');

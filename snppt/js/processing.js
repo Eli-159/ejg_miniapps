@@ -481,7 +481,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Creates a table cell, adds a textarea and appends it to the table row. Textarea indicative of the subject field of the data.
             const tdSubject = document.createElement('td');
             const subjectInput = document.createElement('textarea');
-            subjectInput.cols = '30';
+            subjectInput.cols = '25';
             subjectInput.rows = '3';
             subjectInput.value = processedData.data[i].subject;
             subjectInput.classList.add('editDataSubjectTextarea');
@@ -491,7 +491,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const tdMessage = document.createElement('td');
             const messageInput = document.createElement('textarea');
             messageInput.value = processedData.data[i].message;
-            messageInput.cols = '40';
+            messageInput.cols = '30';
             messageInput.rows = '5';
             messageInput.classList.add('editDataMessageTextarea');
             tdMessage.appendChild(messageInput);

@@ -28,6 +28,7 @@ header > img {
 
 header nav {
     display: inline-block;
+    min-width: 280px;
     max-width: 300px;
     position: absolute;
     margin-left: 5%;
@@ -144,6 +145,10 @@ img.footer-img {
     right: 20px;
     bottom: 20px;
     transition: none;
+}
+
+.print-img {
+    display: none;
 }
 
 @media (max-width: 900px) {
