@@ -49,7 +49,7 @@ td {
     page-break-inside: avoid;
 }
 
-#printSection {
+.dontPrint {
     display: none;
 }
 
