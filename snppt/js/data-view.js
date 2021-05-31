@@ -20,12 +20,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 tableCell.appendChild(text);
                 tableRow.appendChild(tableCell);
                 tableCell = document.createElement('td');
+                tableCell.setAttribute('contenteditable', 'true');
                 text = document.createTextNode(displayData[i].subject);
                 tableCell.appendChild(text);
                 tableRow.appendChild(tableCell);
                 tableCell = document.createElement('td');
-                text = document.createTextNode(displayData[i].message);
-                tableCell.appendChild(text);
+                tableCell.setAttribute('contenteditable', 'true');
+                const messageTextArray = displayData[i].message.split('\n');
+                for (let x = 0; x < messageTextArray.length; x++) {
+                    if (messageTextArray[x] != '') {
+                        text = document.createTextNode(messageTextArray[x]);
+                        tableCell.appendChild(text);
+                        tableCell.appendChild(document.createElement('br'));
+                    }
+                }
+                
                 tableRow.appendChild(tableCell);
                 tableCell = document.createElement('td');
                 text = document.createTextNode(displayData[i].teacher);

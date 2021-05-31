@@ -138,6 +138,10 @@ td {
     padding: 10px;
 }
 
+td[contenteditable="true"]:focus-within {
+    outline: 2px solid #ffcc00;
+}
+
 img.footer-img {
     width: 6%;
     opacity: 0.5;
