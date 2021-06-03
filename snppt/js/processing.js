@@ -453,8 +453,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         // Adds another title page at the end.
         setPptTitlePage();
-        // Downloads the file to the user's computer named with the title.pptx.
-        pres.writeFile(title + '.pptx');
+        // Gets the date and formats it.
+        const date = new Date();
+        const year = date.getFullYear().toString();
+        const month = (date.getMonth()>8 ? (date.getMonth()+1).toString() : '0'+(date.getMonth()+1).toString());
+        const day = (date.getDate()>9 ? date.getDate().toString() : '0'+date.getDate().toString());
+        // Downloads the file to the user's computer named with the 'title - date.pptx'.
+        pres.writeFile(title + ' ' + year + month + day + '.pptx');
     });
 
     // Adds a click event listener to the edit data button.
