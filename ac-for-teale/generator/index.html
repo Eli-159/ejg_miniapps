@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teale Data Input</title>
+    <script src="./script.js"></script>
+</head>
+<body>
+    <div>
+        <label for="dateGiven">Date Given:</label>
+        <input type="date" id="dateGiven">
+        <br>
+        <label for="dateCompleted">Date Completed:</label>
+        <input type="date" id="dateCompleted">
+        <br>
+        <label for="numQsCorrect">Correct Questions:</label>
+        <input type="number" id="numQsCorrect">
+        <span>/</span>
+        <input type="number" id="totalQs">
+        <br>
+        <label for="numImgs">Number of Images:</label>
+        <input type="number" id="numImgs">
+        <br>
+        <br>
+        <label for="ex1">Exercise 1:</label>
+        <input type="text" id="ex1" placeholder="Exercise">
+        <input type="text" id="qs1" placeholder="Questions">
+        <input type="text" id="link1" placeholder="OneNote Link">
+        <br>
+        <label for="ex2">Exercise 2:</label>
+        <input type="text" id="ex2" placeholder="Exercise">
+        <input type="text" id="qs2" placeholder="Questions">
+        <input type="text" id="link2" placeholder="OneNote Link">
+        <br>
+        <label for="ex3">Exercise 3:</label>
+        <input type="text" id="ex3" placeholder="Exercise">
+        <input type="text" id="qs3" placeholder="Questions">
+        <input type="text" id="link3" placeholder="OneNote Link">
+        <br>
+        <br>
+        <input type="button" value="Submit" id="submitBtn">
+        <br>
+        <br>
+        <br>
+        <div id="outputJSON" style="width: 600px; border: 2px solid black;"></div>
+        <p>Image Names:</p>
+        <ul id="imageNameList"></ul>
+    </div>
+</body>
+</html>
